@@ -47,7 +47,7 @@ export default function HermantownJigsawExplorer() {
   return <section className={styles.activity} aria-label="Hermantown jigsaw explorer">
     <p className="eyebrow">Part 2 · Expert pods → home group</p>
     <h3>Four perspectives, one shared decision</h3>
-    <p>Case facts below describe March–June 2026 sources, reviewed October 14, 2026. Use the <a href={localSources.project}>City project page</a> to investigate later updates. Separate a source’s claims from your interpretation.</p>
+    <p>Case facts below describe March–June 2026 sources, reviewed October 14, 2026. Use the <a target="_blank" rel="noopener noreferrer" href={localSources.project}>City project page</a> to investigate later updates. Separate a source’s claims from your interpretation.</p>
     <AccessibleTabs label="Expert pods" tabs={pods}>{(active) => {
       const pod = pods.find((item) => item.id === active)!;
       return <div className={styles.panel}>
@@ -55,7 +55,7 @@ export default function HermantownJigsawExplorer() {
         <h4>Questions for your expert pod</h4>
         <ul>{pod.questions.map((question) => <li key={question}>{question}</li>)}</ul>
         <h4>Evidence to bring back</h4>
-        <ul>{pod.sources.map((source) => <li key={source.url}><a href={source.url}>{source.label}</a></li>)}</ul>
+        <ul>{pod.sources.map((source) => <li key={source.url}><a target="_blank" rel="noopener noreferrer" href={source.url}>{source.label}</a></li>)}</ul>
         <p>Bring one supported claim, one unresolved question, and one proposed condition to your home group.</p>
       </div>;
     }}</AccessibleTabs>
@@ -110,12 +110,12 @@ dailyWaterGallons = Math.round(8000 + (computeLoadMW * 25));`}</pre>
       <p>1 MW = 1,000 kW; kW * hours = kWh; 1 US gallon = 3.78541 liters. The household baseline is 1.2 kW continuously = 28.8 kWh/day = 10,512 kWh/year (about 10,500), a rounded teaching assumption rather than a Minnesota measurement.</p>
       <p>At 100 MW IT load, the evaporative estimates are {number(estimateFootprint(100, 'evaporative').dailyWaterGallons)} gal/day (0.85 L/kWh) and {number(estimateFootprint(100, 'evaporativePeak').dailyWaterGallons)} gal/day (1.8 L/kWh). The air scenario gives 10,500 gal/day for non-cooling uses.</p>
       <p>Overhead includes cooling, power conversion, and other facility systems; PUE cannot isolate cooling power. Zero cooling WUE describes this dry heat-rejection scenario, not every closed-loop design, and excludes its nonzero domestic/humidification water. These daily estimates are not measured annual ISO KPIs. Water use, withdrawal, and consumptive loss require consistent reporting boundaries; they are not interchangeable.</p>
-      <p>Definitions and context: <a href="https://www.iso.org/standard/30134-2">ISO/IEC 30134-2 (PUE)</a>, <a href="https://www.iso.org/standard/77692.html">ISO/IEC 30134-9 (WUE)</a>, and <a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/us_data_center_energy_usage_report_lbnl-2001637_0.pdf">LBNL's 2024 US Data Center Energy Usage Report</a>. The report's national fleet average is not the same as an evaporative-only scenario.</p>
+      <p>Definitions and context: <a target="_blank" rel="noopener noreferrer" href="https://www.iso.org/standard/30134-2">ISO/IEC 30134-2 (PUE)</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.iso.org/standard/77692.html">ISO/IEC 30134-9 (WUE)</a>, and <a target="_blank" rel="noopener noreferrer" href="https://eta-publications.lbl.gov/sites/default/files/2024-12/us_data_center_energy_usage_report_lbnl-2001637_0.pdf">LBNL's 2024 US Data Center Energy Usage Report</a>. The report's national fleet average is not the same as an evaporative-only scenario.</p>
     </details>
     <aside className={styles.notice} aria-label="Indirect power-plant water">
       <strong>Indirect power-plant water (off-site)</strong>
       <p>As an optional sensitivity assumption, thermal/fossil generation at 1.5-2.0 gal/kWh would consume {number(Math.round(estimate.dailyFacilityEnergyKWh * 1.5))}-{number(Math.round(estimate.dailyFacilityEnergyKWh * 2))} gal/day off-site if it supplied all facility electricity. Formula: facility kWh/day * gal/kWh. This range is not a universal thermal-plant factor; fuel, cooling technology, and location matter. It is separate from the on-site estimate and is not added to it.</p>
-      <p>Wind and solar avoid most operational thermal-cooling water, making electricity sourcing relevant even with dry server cooling. The <a href={localSources.utility}>Hermantown agreement announcement</a> specifies 300 MW wind plus 400 MW battery capacity (700 MW total), not a wind/solar/battery package. Storage is not generation, and nameplate capacity does not guarantee continuous clean supply. This model does not estimate the actual grid mix or Hermantown's off-site water consumption.</p>
+      <p>Wind and solar avoid most operational thermal-cooling water, making electricity sourcing relevant even with dry server cooling. The <a target="_blank" rel="noopener noreferrer" href={localSources.utility}>Hermantown agreement announcement</a> specifies 300 MW wind plus 400 MW battery capacity (700 MW total), not a wind/solar/battery package. Storage is not generation, and nameplate capacity does not guarantee continuous clean supply. This model does not estimate the actual grid mix or Hermantown's off-site water consumption.</p>
     </aside>
 
     <h3>Home-group consensus: three conditions</h3>

@@ -5,10 +5,13 @@ sidebar_label: "Hermantown Case Study"
 sidebar_position: 3
 ---
 
+import Link from '@docusaurus/Link';
 import LearningObjectives from '@site/src/components/LearningObjectives';
 import HermantownJigsawExplorer from '@site/src/components/Unit6/HermantownJigsawExplorer';
 
-Build on [Why We Need Data Centers](./why-we-need-data-centers.mdx) to investigate a local proposal through evidence and community perspectives.
+Build on <Link to="/docs/unit-6/why-we-need-data-centers/" target="_blank" rel="noopener noreferrer">Why We Need Data Centers</Link> to investigate a local proposal through evidence and community perspectives.
+
+Links in this lesson open in a new browser tab or window.
 
 ## Learning objectives
 
@@ -18,53 +21,43 @@ Build on [Why We Need Data Centers](./why-we-need-data-centers.mdx) to investiga
   'Support a position about computing value and local impacts with evidence and measurable conditions.',
 ]} />
 
-:::info Your work stays on this device
-This workspace saves notes automatically in this browser's local storage. It does not sync between computers or submit work to the class. Copy your summary and paste it into the class document or Brightspace destination. On a shared computer, avoid personal information and remove your drafts through the browser's site-data controls when finished.
-:::
 
 ## Unmasking the invisible cloud
 
-The cloud can feel weightless when we tap an app. Its physical infrastructure occupies land and uses resources. Now examine Google’s proposed hyperscale data center in Hermantown, in St. Louis County, Minnesota. Your task is to reason from evidence, not to assume that the project is either inherently beneficial or inherently harmful.
+The cloud can feel weightless when we tap an app. Its physical infrastructure occupies land and uses resources. Now examine Google’s proposed hyperscale data center in Hermantown, Minnesota. Your task is to reason from evidence, not to assume that the project is either inherently beneficial or inherently harmful.
 
 :::info A dated case study, not a live project tracker
-The pod fact cards use March–June 2026 sources, checked October 14, 2026. MPR’s June 25 reporting describes an approximately **$2 billion**, roughly **280-acre** proposal near **Midway Road and Morris Thomas Road**. The City’s March 31 scoping notice describes a **278-acre study area**. Consult the [City’s project and environmental-review page](https://hermantownmn.com/project/) for later documents and decisions; the earlier readings do not establish today’s approval status.
+The pod fact cards use March–June 2026 sources, checked October 14, 2026.
 :::
 
 ## How the jigsaw works
 
 1. Form four expert pods: energy, water, economic/compute value, and community/land use.
-2. Each pod uses its questions and linked sources to prepare **one supported claim, one uncertainty, and one proposed condition**. Distinguish reported statements from measured outcomes.
+2. Each pod uses its questions and linked sources to prepare **one supported claim, one uncertainty, and one proposed condition**.
 3. Re-form into home groups with one representative from each pod. Share evidence before using the estimator.
 4. Hold compute load constant while changing cooling architecture, then hold cooling constant while changing compute load. What changes? What does the model leave out?
-5. Reach a consensus on **three measurable conditions** for the City and utility regulators. Include evidence and monitoring responsibilities, then copy the group reflection for your submission destination.
-
-:::warning Do not confuse supply capacity with demand
-[Minnesota Power’s announcement](https://hermantownmn.com/wp-content/uploads/2026/03/PressRelease03032026.pdf) describes **300 MW wind + 400 MW battery capacity**, totaling 700 MW of new resources. Batteries store energy rather than generating it. The announcement is not a confirmed 700 MW site load, a promise of 700 MW every hour, or a statement of battery storage duration. MW measures power; MWh measures energy over time.
-:::
-
-## Estimator math: power, energy, and water
-
-The estimator assumes a constant IT load for 24 hours: **IT kWh/day = IT MW * 1,000 * 24**. **PUE = facility energy / IT energy**, so facility MW = IT MW * PUE. The scenarios use PUE **1.12** (standard evaporative), **1.15** (hot-day evaporative), and **1.25** (air/closed-loop). Overhead includes cooling and other facility systems.
-
-**WUE = water liters / IT kWh**. The evaporative scenarios use **0.85** and **1.8 L/kWh**; gallons/day = round(IT kWh/day * WUE / 3.78541). The dry air/closed-loop scenario has **zero evaporative server-cooling water**, with domestic/staff and humidification use modeled separately as round(8,000 + IT MW * 25) gal/day. At 100 MW, these scenarios give about **539,000**, **1.14 million**, and **10,500 gal/day**, respectively. The homes comparison uses total facility kW / **1.2 kW per household**, rounded to whole homes.
-
-These are illustrative classroom coefficients, not ISO-prescribed performance values, verified national averages, or measured Hermantown design values. [ISO/IEC's PUE standard](https://www.iso.org/standard/30134-2) and [WUE standard](https://www.iso.org/standard/77692.html) define the metrics; [LBNL's 2024 report](https://eta-publications.lbl.gov/sites/default/files/2024-12/us_data_center_energy_usage_report_lbnl-2001637_0.pdf) provides national modeling context. A daily scenario is not an annual measured KPI. Open **How is this calculated? (WUE & PUE Math)** below to trace the conversions. The separate indirect-water note applies an illustrative 1.5-2.0 gal/kWh thermal-generation sensitivity to **facility** electricity, not IT electricity; actual off-site consumption depends on the electricity supply and plant cooling systems.
+5. Reach a consensus on **four measurable conditions** for the City and utility regulators.
+6. Copy your group's work into the <a href="https://docs.google.com/document/d/1_sm_cGpVOs45VFb8ZrhnA9UxNItVV4-HrkgEJ1Prrjw/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Shared Hermantown Case Study Google Doc</a>. Include your evidence and proposed conditions so classmates can review your reasoning.
 
 <HermantownJigsawExplorer />
 
+:::tip Copy your work to the shared Google Doc
+Use **Copy Group Reflection** in the workspace above, then paste your summary into your group's section of the <a href="https://docs.google.com/document/d/1_sm_cGpVOs45VFb8ZrhnA9UxNItVV4-HrkgEJ1Prrjw/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Shared Hermantown Case Study Google Doc</a>. Include all four conditions in the Google Doc, adding any condition not included in the copied summary. Workspace drafts save only in this browser; the site does not update the Google Doc automatically.
+:::
+
 ## Resource library: national energy, water & infrastructure context
 
-- [Google Data Centers: Visual & Infrastructure Tour](https://datacenters.google/) — the operator’s explanation of its facilities and services.
-- [U.S. DOE: Data Center Electricity Demand Report Summary (2024)](https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers) — historical estimates and projected national electricity demand. Projections are scenarios, not measurements of the Hermantown proposal.
-- [IEA: Energy and AI Report (2025)](https://www.iea.org/reports/energy-and-ai) — broader energy-system context for AI.
-- [YouTube: CNBC - Exelon CEO Talks AI's Power Demand and Looming Shortages](https://www.youtube.com/watch?v=e_V15DNIUtc) — a supplied interview link; confirm availability before class.
+- <a href="https://datacenters.google/" target="_blank" rel="noopener noreferrer">Google Data Centers: Visual & Infrastructure Tour</a> — the operator’s explanation of its facilities and services.
+- <a href="https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers" target="_blank" rel="noopener noreferrer">U.S. DOE: Data Center Electricity Demand Report Summary (2024)</a> — historical estimates and projected national electricity demand. Projections are scenarios, not measurements of the Hermantown proposal.
+- <a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="noopener noreferrer">IEA: Energy and AI Report (2025)</a> — broader energy-system context for AI.
+- <a href="https://www.youtube.com/watch?v=e_V15DNIUtc" target="_blank" rel="noopener noreferrer">YouTube: CNBC - Exelon CEO Talks AI's Power Demand and Looming Shortages</a> — a supplied interview link; confirm availability before class.
 
 ## Resource library: the proposed Hermantown Google data center
 
-- [City of Hermantown Official Release: Google Announces Plans for Hermantown Data Center](https://hermantownmn.com/community/community-highlights/google-announces-plans-for-hermantown-data-center/) — March 3, 2026 primary announcement; evaluate the City’s stated expectations.
-- [MPR News: At packed Hermantown open house, Google tries to ease data center concerns](https://www.mprnews.org/story/2026/06/25/at-packed-hermantown-open-house-google-tries-to-ease-data-center-concerns) — June 25, 2026 reporting with developer and resident perspectives.
-- [FOX 9: Google revealed as developer behind controversial Hermantown data center](https://www.fox9.com/news/google-revealed-developer-behind-controversial-hermantown-data-center) — March 3, 2026 reporting and attributed community concerns. Its Pine Island discussion should not be mistaken for a finalized Hermantown design.
-- [Minnesota Center for Environmental Advocacy (Op-Ed): Answers needed on resources-hogging Hermantown data center](https://www.mncenter.org/op-ed-local-view-answers-needed-resources-hogging-hermantown-data-center) — advocacy opinion, posted March 16, 2026; identify its arguments and the evidence needed to evaluate them.
+- <a href="https://hermantownmn.com/community/community-highlights/google-announces-plans-for-hermantown-data-center/" target="_blank" rel="noopener noreferrer">City of Hermantown Official Release: Google Announces Plans for Hermantown Data Center</a> — March 3, 2026 primary announcement; evaluate the City’s stated expectations.
+- <a href="https://www.mprnews.org/story/2026/06/25/at-packed-hermantown-open-house-google-tries-to-ease-data-center-concerns" target="_blank" rel="noopener noreferrer">MPR News: At packed Hermantown open house, Google tries to ease data center concerns</a> — June 25, 2026 reporting with developer and resident perspectives.
+- <a href="https://www.fox9.com/news/google-revealed-developer-behind-controversial-hermantown-data-center" target="_blank" rel="noopener noreferrer">FOX 9: Google revealed as developer behind controversial Hermantown data center</a> — March 3, 2026 reporting and attributed community concerns. Its Pine Island discussion should not be mistaken for a finalized Hermantown design.
+- <a href="https://www.mncenter.org/op-ed-local-view-answers-needed-resources-hogging-hermantown-data-center" target="_blank" rel="noopener noreferrer">Minnesota Center for Environmental Advocacy (Op-Ed): Answers needed on resources-hogging Hermantown data center</a> — advocacy opinion, posted March 16, 2026; identify its arguments and the evidence needed to evaluate them.
 
 :::tip Read across perspectives
 For each claim, record the source, publication date, evidence, and what remains uncertain. Ask whether it describes a proposal, a commitment, a modeled scenario, or an observed outcome. Low direct cooling-water use does not settle questions about stormwater, habitat, indirect power-generation water, or community impacts.
@@ -73,9 +66,9 @@ For each claim, record the source, publication date, evidence, and what remains 
 ## Out-of-class reflection: The Cloud in Our Backyard
 
 :::info Individual reflection
-Compare your earlier mental model of “the cloud” with the physical infrastructure shown by [Google Data Centers](https://datacenters.google/) and the Hermantown case study. Write an individual, evidence-based response addressing all three:
+Compare your earlier mental model of “the cloud” with the physical infrastructure shown by <a href="https://datacenters.google/" target="_blank" rel="noopener noreferrer">Google Data Centers</a> and the Hermantown case study. Write an individual, evidence-based response addressing all three:
 
-1. **Why this scale?** Use at least two of the **5 V’s**, or the **unstructured-data/distributed-computing** concepts from [Why We Need Data Centers](./why-we-need-data-centers.mdx), to explain why facilities of this scale are being built. Explain the connections rather than simply naming terms.
+1. **Why this scale?** Use at least two of the **5 V’s**, or the **unstructured-data/distributed-computing** concepts from <Link to="/docs/unit-6/why-we-need-data-centers/" target="_blank" rel="noopener noreferrer">Why We Need Data Centers</Link>, to explain why facilities of this scale are being built. Explain the connections rather than simply naming terms.
 2. **Which trade-offs?** Discuss specific electricity and water/cooling choices: the possible electricity penalty of low-water air or closed-loop cooling, Minnesota Power’s 700 MW wind/storage plan, and local watershed concerns. Cite the source and date of the claims you use. If you cite an estimator result, label it as an illustrative scenario and state its assumptions.
 3. **Is the Value worth the footprint?** Give your own conclusion about whether the computing **Value** justifies the local physical footprint in St. Louis County. Explain who gains, who bears costs or risks, and what conditions or new evidence could change your position.
 
