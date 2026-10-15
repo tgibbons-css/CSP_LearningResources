@@ -36,7 +36,7 @@ A small table can fit on a laptop. A service receiving many simultaneous request
 
 Scale creates pressure; it does not make one enormous building the only possible design. Workload reduction, efficient software, location choices, and sharing or distributing resources also matter.
 
-### Track 1: The 5 V’s of Big Data
+### The 5 V’s of Big Data
 
 Use **Volume** (amount), **Velocity** (arrival and processing rate), **Variety** (formats), **Veracity** (trustworthiness), and **Value** (useful outcomes) to describe a workload. Which V increases resource needs? Which might help us decide whether the work is worth doing?
 
@@ -45,7 +45,7 @@ Use **Volume** (amount), **Velocity** (arrival and processing rate), **Variety**
 - [Mobile CSP: 7.2 Big Data](https://runestone.academy/ns/books/published/mobilecsp/Unit7-Using-Analyzing-Data/Big-Data.html)
 - [YouTube: Simplilearn - What is Big Data? 5 V's Explained](https://www.youtube.com/watch?v=bAyrObl7TYE)
 
-### Track 2: Structured, semi-structured, and unstructured data
+### Supporting context: Data formats
 
 Compare a table with consistent columns, a JSON record with keys and nested values, and an image or audio file without that tabular schema. “Unstructured” does not mean meaningless. JSON has structure even when records vary. AI workloads can combine structured records, JSON, text, and media; **format alone does not determine size**.
 
@@ -53,7 +53,7 @@ Compare a table with consistent columns, a JSON record with keys and nested valu
 - [MDN: Working with JSON](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON)
 - [YouTube: IBM Technology - Structured vs Unstructured Data Explained](https://www.youtube.com/watch?v=eK3I6oI_4Is)
 
-### Track 3: Distributed data storage & cloud infrastructure
+### Supporting context: Distributed computing and cloud infrastructure
 
 Parallel computing performs work concurrently. Distributed computing coordinates machines connected by a network. Cluster storage spreads data across machines and may replicate it for resilience. Adding machines can increase capacity, but communication, coordination, and network bottlenecks can limit the benefit. Use the sources below to connect these ideas to physical infrastructure.
 
@@ -64,15 +64,28 @@ Parallel computing performs work concurrently. Distributed computing coordinates
 - [YouTube: IBM Technology - Distributed Computing Explained](https://www.youtube.com/watch?v=qJb33Lp8U5U)
 
 :::note Video access
-The supplied video links are preserved. The two IBM Technology video links and the CNBC link below could not be independently retrieved during preparation; the instructor should confirm availability and titles before class. If a video is unavailable, use the written readings for that track.
+The supplied video links are preserved. The two IBM Technology video links and the CNBC link below could not be independently retrieved during preparation; the instructor should confirm availability and titles before class. If a video is unavailable, use the written readings for that topic.
 :::
 
 ### In-class collaborative synthesis
 
-1. Each table group takes **one Track**. Explore its resources for **15 minutes** and complete the corresponding tab below. Include a specific reading example and source.
-2. Use **Copy Markdown Summary for Class Google Doc**, then paste into the class Shared Synthesis Document or board. The instructor provides the class destination; this page does not post there automatically.
-3. Give a **2-minute lightning walk-through** of this connection: **Volume/Velocity of Unstructured Data → requires Distributed Computing → requires Hyperscale Data Centers**. Treat this as a claim to examine: explain the scale assumptions under which each arrow holds, and name an alternative or limitation.
-4. Read another team’s explanation. Add one question about veracity, useful value, or a physical constraint that their explanation has not addressed.
+1. Form **five teams**, each assigned one V: **Volume, Velocity, Variety, Veracity, or Value**.
+2. Spend **15 minutes** exploring the Big Data resources above. Use your team's tab below to prepare your assigned section of the [Shared 5 V's Synthesis Document](https://docs.google.com/document/d/1sxQy6eFQVi9U4ShmW25m76Uzs_shPyw7uTz9tJeR0Qo/edit?usp=sharing). Include all four responses:
+   - A definition of your V in your own words.
+   - A specific real-world example, with a source link.
+   - A short quote from one of the sources, with a source link. Use quotation marks and reproduce the wording accurately.
+   - One question or trade-off for the class to consider.
+3. Use **Copy This Team's Summary**, then paste into your assigned V section of the shared Google Doc. The website saves your draft locally; it does not update the Google Doc automatically.
+4. Give a **2-minute explanation** of your V, example, and source quote. Use your team's focus question below to guide discussion.
+5. Read another team's section. Add one question or connection between its V and your own.
+
+| Team | Focus question |
+| --- | --- |
+| **Volume** | How does the amount of data affect storage, replication, and processing needs? |
+| **Velocity** | How do arrival rates and response-time expectations affect processing and networking? |
+| **Variety** | How do different formats affect storage, integration, and analysis? |
+| **Veracity** | How do errors, missing information, and bias affect cleaning, validation, and trust? |
+| **Value** | What useful outcome does the computing provide, and does it justify its resource costs? |
 
 <TechSynthesisBuilder />
 

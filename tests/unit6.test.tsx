@@ -16,48 +16,67 @@ describe('Unit 6 workspaces', () => {
     expect(get).not.toHaveBeenCalled(); expect(set).not.toHaveBeenCalled();
   });
 
-  it('preserves restored drafts, switches tabs by keyboard, and restores notes across remounts', async () => {
+  it('restores five-team drafts and supports keyboard navigation without changing old drafts', async () => {
     const user = userEvent.setup();
-    const saved = {fiveVs: {definition: 'A saved definition', example: 'IBM', infrastructure: 'More storage'}, structure: {definition: '', example: '', infrastructure: ''}, distributed: {definition: '', example: '', infrastructure: ''}};
-    localStorage.setItem('cis1001.unit6.synthesis.v1', JSON.stringify(saved));
+    const oldDraft = JSON.stringify({fiveVs: {definition: 'Legacy notes'}});
+    localStorage.setItem('cis1001.unit6.synthesis.v1', oldDraft);
+    const saved = Object.fromEntries(['volume', 'velocity', 'variety', 'veracity', 'value'].map((id) =>
+      [id, {definition: id === 'volume' ? 'A saved definition' : '', example: '', quote: '', question: ''}]));
+    localStorage.setItem('cis1001.unit6.synthesis.v2', JSON.stringify(saved));
     const view = render(<TechSynthesisBuilder />);
     await waitFor(() => expect(screen.getByLabelText(/Core Concept Definition/)).toHaveValue('A saved definition'));
-    const first = screen.getByRole('tab', {name: 'The 5 V’s of Big Data'});
-    first.focus(); await user.keyboard('{ArrowRight}');
-    expect(screen.getByRole('tab', {name: 'Data Structure Spectrum'})).toHaveFocus();
-    expect(screen.getByRole('tab', {name: 'Data Structure Spectrum'})).toHaveAttribute('aria-selected', 'true');
-    await user.type(screen.getByLabelText(/Core Concept Definition/), 'JSON keeps keys.');
-    await user.click(screen.getByRole('tab', {name: 'Distributed Systems'}));
-    await user.type(screen.getByLabelText(/Core Concept Definition/), 'Machines cooperate.');
+    expect(screen.getAllByRole('tab').map((tab) => tab.textContent)).toEqual(['Volume', 'Velocity', 'Variety', 'Veracity', 'Value']);
+    screen.getByRole('tab', {name: 'Volume'}).focus();
+    await user.keyboard('{ArrowRight}');
+    expect(screen.getByRole('tab', {name: 'Velocity'})).toHaveFocus();
+    expect(screen.getByRole('tab', {name: 'Velocity'})).toHaveAttribute('aria-selected', 'true');
+    await user.type(screen.getByLabelText(/Quote from a Source/), 'A quote. https://example.com/velocity');
+    await user.type(screen.getByLabelText(/Question or Trade-off/), 'How fast is fast enough?');
+    await user.click(screen.getByRole('tab', {name: 'Value'}));
+    await user.type(screen.getByLabelText(/Core Concept Definition/), 'Useful outcomes.');
     view.unmount(); render(<TechSynthesisBuilder />);
     await waitFor(() => expect(screen.getByLabelText(/Core Concept Definition/)).toHaveValue('A saved definition'));
-    await user.click(screen.getByRole('tab', {name: 'Data Structure Spectrum'}));
-    expect(screen.getByLabelText(/Core Concept Definition/)).toHaveValue('JSON keeps keys.');
-    await user.click(screen.getByRole('tab', {name: 'Distributed Systems'}));
-    expect(screen.getByLabelText(/Core Concept Definition/)).toHaveValue('Machines cooperate.');
-    screen.getByRole('tab', {name: 'Distributed Systems'}).focus();
+    await user.click(screen.getByRole('tab', {name: 'Velocity'}));
+    expect(screen.getByLabelText(/Quote from a Source/)).toHaveValue('A quote. https://example.com/velocity');
+    expect(screen.getByLabelText(/Question or Trade-off/)).toHaveValue('How fast is fast enough?');
+    screen.getByRole('tab', {name: 'Velocity'}).focus();
+    await user.keyboard('{End}');
+    expect(screen.getByRole('tab', {name: 'Value'})).toHaveFocus();
+    expect(screen.getByLabelText(/Core Concept Definition/)).toHaveValue('Useful outcomes.');
     await user.keyboard('{ArrowRight}');
-    expect(screen.getByRole('tab', {name: 'The 5 V’s of Big Data'})).toHaveFocus();
-    await user.keyboard('{End}'); expect(screen.getByRole('tab', {name: 'Distributed Systems'})).toHaveFocus();
-    await user.keyboard('{Home}'); expect(screen.getByRole('tab', {name: 'The 5 V’s of Big Data'})).toHaveFocus();
+    expect(screen.getByRole('tab', {name: 'Volume'})).toHaveFocus();
+    await user.keyboard('{ArrowLeft}');
+    expect(screen.getByRole('tab', {name: 'Value'})).toHaveFocus();
+    await user.keyboard('{Home}');
+    expect(screen.getByRole('tab', {name: 'Volume'})).toHaveFocus();
+    expect(localStorage.getItem('cis1001.unit6.synthesis.v1')).toBe(oldDraft);
   });
 
-  it('copies all tracks with table-safe Markdown and provides a fallback when copying fails', async () => {
+  it('copies only the selected V including quote and source, with safe Markdown and copy fallback', async () => {
     const user = userEvent.setup();
     const copy = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue();
     render(<TechSynthesisBuilder />);
-    await user.type(screen.getByLabelText(/Core Concept Definition/), 'Volume | size\n<example>');
-    await user.click(screen.getByRole('button', {name: 'Copy Markdown Summary for Class Google Doc'}));
-    expect(copy).toHaveBeenCalledWith(expect.stringContaining('Volume \\| size<br>&lt;example&gt;'));
-    expect(copy).toHaveBeenCalledWith(expect.stringContaining('## Distributed Systems'));
+    expect(screen.getByRole('link', {name: "Open Shared 5 V's Synthesis Document"})).toHaveAttribute('href',
+      'https://docs.google.com/document/d/1sxQy6eFQVi9U4ShmW25m76Uzs_shPyw7uTz9tJeR0Qo/edit?usp=sharing');
+    await user.type(screen.getByLabelText(/Core Concept Definition/), 'Volume notes stay separate.');
+    await user.click(screen.getByRole('tab', {name: 'Veracity'}));
+    await user.type(screen.getByLabelText(/Quote from a Source/), 'Trust | data\n<quote> https://example.com/source');
+    await user.type(screen.getByLabelText(/Question or Trade-off/), 'Who checks accuracy?');
+    await user.click(screen.getByRole('button', {name: "Copy This Team's Summary"}));
+    const output = copy.mock.calls[0][0];
+    expect(output).toContain('## Veracity');
+    expect(output).toContain('Trust \\| data<br>&lt;quote&gt; https://example.com/source');
+    expect(output).toContain('Who checks accuracy?');
+    expect(output).not.toContain('Volume notes stay separate.');
+    expect(output).not.toContain('## Volume');
     copy.mockRejectedValueOnce(new Error('Not allowed'));
-    await user.click(screen.getByRole('button', {name: 'Copy Markdown Summary for Class Google Doc'}));
+    await user.click(screen.getByRole('button', {name: "Copy This Team's Summary"}));
     expect(await screen.findByText(/Clipboard access is unavailable/)).toBeInTheDocument();
     expect(screen.getByLabelText('Markdown summary')).toBeVisible();
   });
 
   it('handles invalid saved data and storage denial without disabling editing', async () => {
-    localStorage.setItem('cis1001.unit6.synthesis.v1', '{broken JSON');
+    localStorage.setItem('cis1001.unit6.synthesis.v2', '{broken JSON');
     const view = render(<TechSynthesisBuilder />);
     expect(await screen.findByText(/Saved notes could not be restored/)).toBeInTheDocument();
     view.unmount();
