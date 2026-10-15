@@ -32,7 +32,7 @@ This is the CIS 1001: Computer Science Principles learning-resource framework. K
 - `BinaryExplorer`: reference implementation for a small self-contained activity with instructions, keyboard controls, live output, and reset.
 - Use native buttons, labeled inputs, fieldsets, and legends. Support keyboard operation, visible focus, polite announcements of changing results, adequate contrast, reduced motion, and narrow screens. Never rely on color alone.
 - Avoid random IDs, browser globals during render, or other server/client inconsistencies: Docusaurus statically renders lessons. Use `useId` for instance-specific labels/groups.
-- State is in-memory and resets on unmount or reload. Do not add response collection, analytics, storage, or grading without explicit user scope.
+- State is in-memory and resets on unmount or reload, except the user-requested Unit 6 workspaces: these store versioned, validated local drafts after hydration. Preserve this explicit exception and communicate it in learner-facing copy. No cloud sync or automatic submission is implemented. Do not add other response collection, analytics, storage, or grading without explicit user scope.
 
 ## Verification and delivery
 

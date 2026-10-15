@@ -21,12 +21,12 @@ export default function Home() {
         <p className="framework-note">This resource collection is under development. Lesson content is being developed; Unit 1 includes a working demonstration.</p>
         <div className="resource-grid">{units.map((unit) => <ResourceCard key={unit.number}
           title={unit.title} href={unit.href} label={`Unit ${String(unit.number).padStart(2, '0')}`}>
-          <p>{unit.description}</p><span className="card-meta">{unit.number === 1 ? 'Demo activity available' : 'Content coming soon'}</span>
+          <p>{unit.description}</p><span className="card-meta">{unit.number === 1 ? 'Demo activity available' : unit.number === 5 ? 'Readings, tutorials & datasets' : unit.number === 6 ? 'Interactive case study available' : 'Content coming soon'}</span>
         </ResourceCard>)}</div>
       </section>
       <section className="study-guide" aria-labelledby="study-heading">
         <div><p className="eyebrow">Make it your own</p><h2 id="study-heading">A place to learn by doing</h2></div>
-        <p>Begin with a unit’s learning objectives, explore the readings, then test your understanding with activities and self-checks. Practice responses stay in your browser session and are not graded or submitted.</p>
+        <p>Begin with a unit’s learning objectives, explore the readings, then test your understanding with activities and self-checks. Activities do not submit work automatically. Unit 6 workspaces save notes on your device so you can return to them later.</p>
       </section>
     </main>
   </Layout>;

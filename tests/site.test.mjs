@@ -61,3 +61,16 @@ test('all built internal page links, assets, and anchors resolve under the base 
     }
   }
 });
+
+test('Unit 6 case study is reachable and statically renders both accessible activities', () => {
+  const href = `${base}docs/unit-6/data-centers-big-data/`;
+  const overview = page('docs/unit-6');
+  assert.ok(overview.querySelector(`a[href="${href}"]`));
+  const lesson = page('docs/unit-6/data-centers-big-data');
+  assert.ok(lesson.querySelector(`aside a[href="${href}"]`));
+  assert.equal(lesson.querySelectorAll('[role="tab"]').length, 7);
+  assert.ok(lesson.querySelector('input[type="range"][min="50"][max="700"]'));
+  assert.match(lesson.body.textContent, /not a forecast for Hermantown/);
+  assert.ok(lesson.querySelector(`a.pagination-nav__link--prev[href="${base}docs/unit-6/"]`));
+  assert.ok(lesson.querySelector(`a.pagination-nav__link--next[href="${base}docs/unit-7/"]`));
+});

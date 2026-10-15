@@ -1,6 +1,6 @@
 # CIS 1001 · Computer Science Principles
 
-An extensible Docusaurus, React, TypeScript, and MDX framework for college-level introductory computing resources. Eight course units provide space for objectives, readings, external resources, interactive activities, and assignments. Unit 1 includes a working binary explorer and multiple-choice self-check. Other content is intentionally minimal.
+An extensible Docusaurus, React, TypeScript, and MDX framework for college-level introductory computing resources. Eight course units provide space for objectives, readings, external resources, interactive activities, and assignments. Unit 1 includes a binary explorer and self-check, Unit 5 a resource hub, and Unit 6 a collaborative Big Data/data-center case study. Other content is intentionally minimal.
 
 Production URL: https://tgibbons-css.github.io/CSP_LearningResources/
 
@@ -59,9 +59,21 @@ AGENTS.md                 # Authoring and coding conventions
 
 Follow [AGENTS.md](AGENTS.md). Add MDX lessons to the appropriate unit folder with descriptive front matter and ordered `sidebar_position` values. Use relative MDX links between lessons. The generated sidebar, breadcrumbs, table of contents, and previous/next links follow these positions. Unit category links open each MDX landing page.
 
-Use [the demonstration lesson](docs/unit-1/binary-explorer.mdx) as a small authoring example. Keep TypeScript behavior in `src/components`; import it into MDX. Shared activities use native accessible controls and local React state. Responses are ungraded, not sent to a server, and reset when the component unmounts or the page reloads. This static site has no assignment submission system.
+Use [the demonstration lesson](docs/unit-1/binary-explorer.mdx) as a small authoring example. Keep TypeScript behavior in `src/components`; import it into MDX. Shared activities use native accessible controls and local React state. The original practice activities reset on reload; the Unit 6 workspaces retain drafts locally as described below. This static site does not grade responses or submit assignments.
 
 When changing unit names, update `src/data/units.ts`, the unit `_category_.json`, and the overview front matter together. The eight unit titles follow the course outline; lesson content remains under development.
+
+## Unit 6: Big Data infrastructure and Hermantown
+
+The [case-study lesson](docs/unit-6/data-centers-big-data.mdx) includes three technical reading tracks, a team synthesis builder, four expert pods, an electricity/water estimator, and an individual reflection. Unit 6 components and CSS modules are in `src/components/Unit6/`.
+
+The two workspaces are an explicit exception to the original in-memory-only activities: they store validated drafts in versioned localStorage keys (`cis1001.unit6.synthesis.v1` and `cis1001.unit6.jigsaw.v1`) after hydration. Storage and clipboard failures are handled without blocking editing. Data stays on the device; users must copy and paste it into the instructor-provided class destination. On shared computers, users can remove drafts through browser site-data controls. Clipboard copying does not submit work, and Google Docs may paste Markdown as plain text.
+
+`footprintModel.ts` defines **illustrative teaching coefficients**, not verified Hermantown design parameters: evaporative PUE 1.20 / 1.8 L per IT kWh; low-water air/closed-loop PUE 1.35 / 0.05 L per IT kWh. The model assumes constant IT load and excludes indirect water, emissions, cost, and ecological impacts. Its home comparison uses EIA's 2022 US average annual residential-customer purchases (10,791 kWh), not Minnesota peak demand. Do not relabel the 50–700 MW slider or announced wind/battery capacity as measured site demand.
+
+Case cards are explicitly a March–June 2026 source snapshot, reviewed October 14, 2026. Check the City project page before teaching for later decisions. All supplied resource URLs are preserved. Three supplied YouTube links (two IBM Technology videos and the CNBC interview) could not be independently retrieved; confirm titles and availability before class. The City announcement initially returned an intermittent error but was corroborated by indexed content and the City's project materials.
+
+Tests cover server rendering, draft restoration, keyboard tabs, copying and fallback, blocked storage, model units/bounds, group export, and built-site navigation. No linter is configured; `npm run check` runs the available TypeScript, behavior, build, and navigation checks.
 
 ## Deployment after review
 

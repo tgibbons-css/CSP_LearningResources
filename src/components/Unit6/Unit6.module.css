@@ -1,0 +1,35 @@
+.activity {border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; background: var(--surface); color: var(--ifm-font-color-base); min-width: 0;}
+.activity h3 {scroll-margin-top: 5rem;}
+.tabs {display: flex; gap: .5rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); padding-bottom: .8rem; margin: 1.5rem 0 1rem;}
+.tabs button {font: inherit; font-size: .85rem; font-weight: 600; min-height: 44px; border: 1px solid var(--border); border-radius: 6px; padding: .65rem .85rem; background: var(--surface); color: var(--ifm-font-color-base); cursor: pointer; flex: 1 1 10rem;}
+.tabs button[aria-selected='true'] {border-color: var(--ifm-color-primary); border-bottom-width: 4px; background: var(--soft-surface); color: var(--ifm-color-primary);}
+.panel {padding: .25rem 0;}
+.guidance {padding: 1rem; border-radius: 8px; background: var(--soft-surface);}
+.small {font-size: .85rem; color: var(--muted); margin-bottom: .6rem; overflow-wrap: anywhere;}
+.field {margin: 1.25rem 0;}
+.field label, .export label {display: block; font-weight: 700; margin-bottom: .5rem;}
+.activity textarea {display: block; width: 100%; padding: .8rem; font: inherit; color: var(--ifm-font-color-base); background: var(--ifm-background-color); border: 1px solid var(--border); border-radius: 6px; min-height: 6rem; resize: vertical;}
+.activity textarea:disabled {opacity: .65;}
+.activity input[type='range'] {width: 100%; accent-color: var(--ifm-color-primary); min-height: 44px;}
+.cooling {border: 1px solid var(--border); border-radius: 8px; padding: 1rem; min-width: 0;}
+.cooling legend {font-size: 1rem; font-weight: 700; padding: 0 .4rem;}
+.cooling label {display: flex; gap: .7rem; align-items: center; min-height: 44px; padding: .4rem 0; cursor: pointer;}
+.cooling input {accent-color: var(--ifm-color-primary); flex-shrink: 0; width: 1.1rem; height: 1.1rem;}
+.notice {padding: 1rem; border-left: 4px solid var(--ifm-color-primary); background: var(--soft-surface); border-radius: 4px;}
+.notice p {margin: .5rem 0 0;}
+.results {background: var(--soft-surface); border-radius: 8px; padding: 1rem; margin: 1.25rem 0;}
+.results dl {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 0;}
+.results dt {font-size: .85rem; font-weight: 500;}
+.results dd {margin: .3rem 0 0; font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums;}
+.results dd span {display: block; font-size: .8rem; font-weight: 400;}
+.assumptions {margin: 1.5rem 0;}
+.assumptions summary, .export summary {cursor: pointer; font-weight: 600; min-height: 44px; padding: .5rem 0; color: var(--ifm-color-primary);}
+.assumptions table {font-size: .85rem;}
+.export {border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 1.5rem;}
+.export > button {white-space: normal; text-align: center; max-width: 100%;}
+:global([data-theme='dark']) .activity {border-color: var(--border); background: var(--ifm-background-surface-color);}
+@media (max-width: 600px) {
+  .activity {padding: 1rem;}
+  .results dl {grid-template-columns: 1fr;}
+  .tabs button {flex-basis: 100%; text-align: left;}
+}

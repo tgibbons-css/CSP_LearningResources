@@ -1,6 +1,6 @@
 ---
 title: "Unit 5: Manipulating Data in Sheets"
-description: "Unit 5 overview, learning objectives, resources, activities, and assignments."
+description: "Mobile CSP readings, Google Sheets tutorials, and real datasets for exploring and manipulating data."
 slug: /unit-5
 sidebar_label: "Unit 5: Manipulating Data in Sheets"
 sidebar_position: 1
@@ -8,27 +8,196 @@ sidebar_position: 1
 
 import LearningObjectives from '@site/src/components/LearningObjectives';
 import InstructionalCallout from '@site/src/components/InstructionalCallout';
+import ResourceCard from '@site/src/components/ResourceCard';
 
-<InstructionalCallout title="Unit in development">
-This unit is under development. Learning materials and activities will be added here.
-</InstructionalCallout>
+<div className="unit-intro">
+<p className="eyebrow">Read · Practice · Explore</p>
+<p className="unit-intro-lead">Turn rows of data into useful answers.</p>
+<p>Build your spreadsheet skills, connect them to searching and sorting, and explore a dataset that interests you.</p>
+</div>
+
+<nav className="unit-shortcuts" aria-label="Unit 5 resource sections">
+  <a href="#readings">Mobile CSP readings</a>
+  <a href="#external-resources">Sheets tutorials</a>
+  <a href="#interactive-activities">Practice & datasets</a>
+  <a href="#assignments">Assignments</a>
+</nav>
 
 ## Learning objectives
 
-Learning objectives will be added when this unit is developed.
+Suggested goals for working through these resources:
+
+<LearningObjectives items={[
+  'Organize data in a spreadsheet and use sorting and filtering to answer a question.',
+  'Use spreadsheet formulas to calculate and summarize values.',
+  'Explain how searching and sorting help people work with data.',
+  'Describe a pattern in a dataset and identify a limitation of the conclusion.',
+]} />
 
 ## Readings
 
-Assigned readings and lesson notes will appear here.
+### Make connections with Mobile CSP
+
+These readings come from Mobile CSP [Chapter 5](https://runestone.academy/ns/books/published/mobilecsp/Unit5-Algorithms-Procedural-Abstraction/toctree.html) and [Chapter 7](https://runestone.academy/ns/books/published/mobilecsp/Unit7-Using-Analyzing-Data/toctree.html). The numbers below are textbook lesson numbers, rather than CIS 1001 unit numbers.
+
+<div className="lesson-resource-grid">
+<ResourceCard title={"7.2. Big Data"} href={"https://runestone.academy/ns/books/published/mobilecsp/Unit7-Using-Analyzing-Data/Big-Data.html"} label={"Mobile CSP · 7.2"}>
+Explore the role of large datasets in computing.
+</ResourceCard>
+<ResourceCard title={"7.3. Visualizing Data"} href={"https://runestone.academy/ns/books/published/mobilecsp/Unit7-Using-Analyzing-Data/Visualizing-Data.html"} label={"Mobile CSP · 7.3"}>
+Connect data analysis with charts and visual explanations.
+</ResourceCard>
+<ResourceCard title={"5.3. Search Algorithms"} href={"https://runestone.academy/ns/books/published/mobilecsp/Unit5-Algorithms-Procedural-Abstraction/Search-Algorithms.html"} label={"Mobile CSP · 5.3"}>
+Compare ways of finding a value in a collection of data.
+</ResourceCard>
+<ResourceCard title={"5.4. Sorting Algorithms"} href={"https://runestone.academy/ns/books/published/mobilecsp/Unit5-Algorithms-Procedural-Abstraction/Sorting-Algorithms.html"} label={"Mobile CSP · 5.4"}>
+Explore the algorithms behind putting data in order.
+</ResourceCard>
+</div>
+
+<details className="resource-disclosure">
+<summary>Optional extensions · algorithms and App Inventor</summary>
+
+<div className="lesson-resource-grid">
+<ResourceCard title={"5.8. Analyzing Algorithms"} href={"https://runestone.academy/ns/books/published/mobilecsp/Unit5-Algorithms-Procedural-Abstraction/Analyzing-Algorithms.html"} label={"Optional reading"}>
+Take a closer look at comparing algorithms.
+</ResourceCard>
+<ResourceCard title={"7.5. Data Map App"} href={"https://runestone.academy/ns/books/published/mobilecsp/Unit7-Using-Analyzing-Data/Data-Map-App.html"} label={"Optional App Inventor activity"}>
+Return to App Inventor to try the mapping app from the original resource list.
+</ResourceCard>
+</div>
+
+</details>
 
 ## External resources
 
-Curated links with descriptions and source attribution will appear here.
+### Build your Google Sheets skills
+
+Start with a focused lesson, or work through the three-part Google Workspace sequence. These tutorials are hosted by Google for Education.
+
+<InstructionalCallout tone="note" title="Opening the resources">
+Some Google lessons and shared spreadsheets may ask you to sign in or request access. If you cannot open a resource, ask your instructor. Access is controlled by the resource owner.
+</InstructionalCallout>
+
+<div className="lesson-resource-grid">
+<ResourceCard title={"Analyze data in Google Sheets"} href={"https://edu.exceedlms.com/student/activity/1717649-analyze-data-in-google-sheets?sid=ef5ebe28-b0ae-4e5f-b3b3-daed9bea5fc6&sid_i=6#/page/6439482072d98607c8e70d27"} label={"Google for Education · Lesson"}>
+Practice analyzing data with Google Sheets.
+</ResourceCard>
+<ResourceCard title={"Make Sense of Large Data Sets"} href={"https://edu.exceedlms.com/student/activity/1716315-make-sense-of-large-data-sets?curriculum_activity_id=3305393&path_id=1716407&sid=ef5ebe28-b0ae-4e5f-b3b3-daed9bea5fc6&sid_i=16#/page/5edff0d449c65201af3b837c"} label={"Google for Education · Lesson"}>
+Explore a lesson focused on working with larger datasets.
+</ResourceCard>
+</div>
+
+### Google Workspace: Sheets sequence
+
+<div className="lesson-resource-grid">
+<ResourceCard title={"Google Workspace: Sheets - Part 1"} href={"https://edu.exceedlms.com/student/path/1606820"} label={"Applied Digital Skills · Part 1"}>
+Begin the three-part Sheets tutorial sequence.
+</ResourceCard>
+<ResourceCard title={"Google Workspace: Sheets - Part 2"} href={"https://edu.exceedlms.com/student/path/1606732"} label={"Applied Digital Skills · Part 2"}>
+Continue with the second part of the Sheets sequence.
+</ResourceCard>
+<ResourceCard title={"Google Workspace: Sheets - Part 3"} href={"https://edu.exceedlms.com/student/path/1606656"} label={"Applied Digital Skills · Part 3"}>
+Work through the final part of the Sheets sequence.
+</ResourceCard>
+</div>
 
 ## Interactive activities
 
-Interactive activities and self-check questions will appear here.
+### Start with the class example
+
+<div className="featured-resource">
+<ResourceCard title={"Fundraiser Shirt Sale Data"} href={"https://docs.google.com/spreadsheets/d/1K_hy2PXtlH6G8UPQmzzLH_hem9daEN16IrP9CmfhP50/edit?usp=sharing"} label={"Class example · Google Sheets"}>
+The fundraiser spreadsheet from the course resource list. Use it as a starting point for exploring how spreadsheet data is organized.
+</ResourceCard>
+</div>
+
+<InstructionalCallout tone="tip" title="A suggested practice routine">
+Choose a dataset, identify what one row represents, and write a question you could answer from its columns. Work in your own copy, then try a sort, a filter, or a calculation. Record what you changed and what you learned.
+</InstructionalCallout>
+
+### Explore a dataset
+
+Pick a topic that interests you. TidyTuesday is organized by the Data Science Learning Community; its dataset pages include background and information about the data. Open a year below to browse the examples selected in the original resource list.
+
+For a GitHub dataset, open its README, review the data dictionary, and locate a CSV file to download and import into Sheets. You can use the data without running the R or Python examples shown on those pages.
+
+<details className="resource-disclosure">
+<summary>2026 collection · films and places</summary>
+
+[Browse all 2026 datasets](https://github.com/rfordatascience/tidytuesday/blob/main/data/2026/readme.md)
+
+<div className="lesson-resource-grid">
+<ResourceCard title={"Films Based on Video Games"} href={"https://github.com/rfordatascience/tidytuesday/blob/main/data/2026/2026-06-09/readme.md"} label={"TidyTuesday · 2026"}>
+Explore a dataset about films adapted from video games.
+</ResourceCard>
+<ResourceCard title={"World Castles, Fortresses and Palaces"} href={"https://github.com/rfordatascience/tidytuesday/blob/main/data/2026/2026-09-01/readme.md"} label={"TidyTuesday · 2026"}>
+Explore a collection about castles, fortresses, and palaces.
+</ResourceCard>
+</div>
+
+</details>
+
+<details className="resource-disclosure">
+<summary>2025 collection · television, public health, and games</summary>
+
+[Browse all 2025 datasets](https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/readme.md)
+
+<div className="lesson-resource-grid">
+<ResourceCard title={"Donuts, Data, and D'oh - A Deep Dive into The Simpsons"} href={"https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-02-04/readme.md"} label={"TidyTuesday · 2025"}>
+Investigate data connected to The Simpsons.
+</ResourceCard>
+<ResourceCard title={"CDC Datasets"} href={"https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-02-11/readme.md"} label={"TidyTuesday · 2025"}>
+Explore the CDC datasets selected for this collection.
+</ResourceCard>
+<ResourceCard title={"Dungeons and Dragons Monsters (2024)"} href={"https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-05-27/readme.md"} label={"TidyTuesday · 2025 collection"}>
+Explore monsters from the 2024 Dungeons & Dragons rules update. The dataset appears in the 2025 collection.
+</ResourceCard>
+</div>
+
+</details>
+
+<details className="resource-disclosure">
+<summary>2024 collection · hockey, polling places, and basketball</summary>
+
+[Browse all 2024 datasets](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/readme.md)
+
+<div className="lesson-resource-grid">
+<ResourceCard title={"Canadian Hockey Player Birth Months"} href={"https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-09/readme.md"} label={"TidyTuesday · 2024"}>
+Explore the distribution of birth months among Canadian hockey players.
+</ResourceCard>
+<ResourceCard title={"US Polling Places 2012-2020"} href={"https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-16/readme.md"} label={"TidyTuesday · 2024"}>
+Explore a collection of US polling-place data from 2012–2020.
+</ResourceCard>
+<ResourceCard title={"NCAA Men's March Madness"} href={"https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-26/readme.md"} label={"TidyTuesday · 2024"}>
+Explore data related to the NCAA men’s basketball tournament.
+</ResourceCard>
+</div>
+
+</details>
+
+### Work with familiar spreadsheets
+
+These shared spreadsheets offer examples connected to course planning and computing careers. Course schedules are snapshots of the terms shown; use official college systems for current registration information.
+
+<div className="lesson-resource-grid">
+<ResourceCard title={"Scholastica Course Schedule (Fall 2026)"} href={"https://docs.google.com/spreadsheets/d/1qmg5XKmEKqvf2JWa-8Icm8oQf738gox4/edit?usp=sharing&ouid=103379453373353553273&rtpof=true&sd=true"} label={"Shared spreadsheet · Fall 2026"}>
+Explore the course-schedule spreadsheet from the resource list.
+</ResourceCard>
+<ResourceCard title={"Scholastica Course Schedule (Spring 2027)"} href={"https://docs.google.com/spreadsheets/d/1ByuI5VPpB0KOJaYp3k_6mH1j0fm9GSqgA5zjdBTowIc/edit?usp=sharing"} label={"Shared spreadsheet · Spring 2027"}>
+Compare or explore the spring course-schedule spreadsheet.
+</ResourceCard>
+<ResourceCard title={"Tom’s Computer Internship & Job Postings"} href={"https://docs.google.com/spreadsheets/d/1aEY5USWu0Nznxpkk2A7enFRksuQueI-W-VpXEXHkAAY/edit?usp=sharing"} label={"Shared spreadsheet · Careers"}>
+Explore the computing internship and job-posting collection. Listings may change; check a posting’s source for current details.
+</ResourceCard>
+</div>
 
 ## Assignments
 
-Assignment instructions, submission details, and assessment criteria will appear here. No assignment is currently due from this page.
+Use the resources above alongside the assignment instructions provided by your instructor. Check the course LMS for submission requirements, grading criteria, and due dates.
+
+Optional reflection: What question did you investigate, what spreadsheet operation helped you, and what limitation would you mention when sharing the result?
+
+---
+
+<p className="resource-source">Resource selection adapted from <a href="https://docs.google.com/document/d/1-hM96d_ia7zbs5d4PkNiSCHFbGeFBXR74jzDSGQollk/edit?usp=sharing">CIS 1001 Unit 5 Learning Resources</a>. Descriptions and suggested practice added for this learning hub.</p>

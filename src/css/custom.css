@@ -57,6 +57,23 @@
 .resource-card h3 a {text-decoration: underline; text-underline-offset: 4px;}
 .resource-card p {color: var(--muted); font-size: .95rem;}
 .card-meta {display: inline-block; border-top: 1px solid var(--border); padding-top: .8rem; font-size: .75rem; color: var(--muted); width: 100%;}
+.unit-intro {background: var(--soft-surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0;}
+.unit-intro-lead {font: inherit; font-size: clamp(1.35rem, 3vw, 1.8rem); font-weight: 700; line-height: 1.35; letter-spacing: -.025em;}
+.unit-intro p:last-child {margin-bottom: 0;}
+.unit-shortcuts {display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2rem;}
+.unit-shortcuts a {display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .85rem; border: 1px solid var(--border); border-radius: 24px; font-size: .85rem; font-weight: 600; background: var(--surface); text-decoration: underline; text-underline-offset: 3px;}
+.unit-shortcuts a:hover {background: var(--soft-surface); border-color: var(--ifm-color-primary);}
+.lesson-resource-grid {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.25rem 0 1.75rem;}
+.lesson-resource-grid .resource-card {padding: 1.25rem;}
+.lesson-resource-grid .resource-card h3 {font-size: 1.05rem;}
+.lesson-resource-grid .resource-card p:last-child {margin-bottom: 0;}
+.resource-disclosure {border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; background: var(--surface);}
+.resource-disclosure > summary {cursor: pointer; font-weight: 700; min-height: 44px; align-content: center; color: var(--ifm-color-primary);}
+.resource-disclosure[open] > summary {margin-bottom: 1rem;}
+.resource-disclosure .lesson-resource-grid {margin-bottom: .25rem;}
+.featured-resource .resource-card {border-top: 4px solid var(--ifm-color-primary); background: var(--soft-surface);}
+.resource-source {font-size: .85rem; color: var(--muted);}
+@media (max-width: 767px) {.lesson-resource-grid {grid-template-columns: 1fr;}}
 .study-guide {margin-top: 3rem; padding: 2rem; background: var(--soft-surface); border-radius: 10px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 2rem;}
 .study-guide p:last-child {margin-bottom: 0;}
 .learning-objectives, .instructional-callout {border-left: 4px solid var(--ifm-color-primary); padding: 1rem 1.25rem; margin: 1.5rem 0; background: var(--soft-surface); border-radius: 0 8px 8px 0;}
