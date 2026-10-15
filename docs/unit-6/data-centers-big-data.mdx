@@ -96,6 +96,14 @@ The pod fact cards use March–June 2026 sources, checked October 14, 2026. MPR�
 [Minnesota Power’s announcement](https://hermantownmn.com/wp-content/uploads/2026/03/PressRelease03032026.pdf) describes **300 MW wind + 400 MW battery capacity**, totaling 700 MW of new resources. Batteries store energy rather than generating it. The announcement is not a confirmed 700 MW site load, a promise of 700 MW every hour, or a statement of battery storage duration. MW measures power; MWh measures energy over time.
 :::
 
+### Estimator math: power, energy, and water
+
+The estimator assumes a constant IT load for 24 hours: **IT kWh/day = IT MW * 1,000 * 24**. **PUE = facility energy / IT energy**, so facility MW = IT MW * PUE. The scenarios use PUE **1.12** (standard evaporative), **1.15** (hot-day evaporative), and **1.25** (air/closed-loop). Overhead includes cooling and other facility systems.
+
+**WUE = water liters / IT kWh**. The evaporative scenarios use **0.85** and **1.8 L/kWh**; gallons/day = round(IT kWh/day * WUE / 3.78541). The dry air/closed-loop scenario has **zero evaporative server-cooling water**, with domestic/staff and humidification use modeled separately as round(8,000 + IT MW * 25) gal/day. At 100 MW, these scenarios give about **539,000**, **1.14 million**, and **10,500 gal/day**, respectively. The homes comparison uses total facility kW / **1.2 kW per household**, rounded to whole homes.
+
+These are illustrative classroom coefficients, not ISO-prescribed performance values, verified national averages, or measured Hermantown design values. [ISO/IEC's PUE standard](https://www.iso.org/standard/30134-2) and [WUE standard](https://www.iso.org/standard/77692.html) define the metrics; [LBNL's 2024 report](https://eta-publications.lbl.gov/sites/default/files/2024-12/us_data_center_energy_usage_report_lbnl-2001637_0.pdf) provides national modeling context. A daily scenario is not an annual measured KPI. Open **How is this calculated? (WUE & PUE Math)** below to trace the conversions. The separate indirect-water note applies an illustrative 1.5-2.0 gal/kWh thermal-generation sensitivity to **facility** electricity, not IT electricity; actual off-site consumption depends on the electricity supply and plant cooling systems.
+
 <HermantownJigsawExplorer />
 
 ### Resource library: national energy, water & infrastructure context

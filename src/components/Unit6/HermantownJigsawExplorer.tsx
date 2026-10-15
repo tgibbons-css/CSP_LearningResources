@@ -2,7 +2,7 @@ import {useId, useState} from 'react';
 import AccessibleTabs from './AccessibleTabs';
 import CopySummary, {markdownCell} from './CopySummary';
 import useSavedDraft from './useSavedDraft';
-import {annualHomeKwh, coolingModels, estimateFootprint, type Cooling} from './footprintModel';
+import {coolingModels, estimateFootprint, type Cooling} from './footprintModel';
 import {pods, localSources} from './resources';
 import styles from './Unit6.module.css';
 
@@ -31,11 +31,12 @@ export default function HermantownJigsawExplorer() {
 ## Classroom scenario (NOT a Hermantown forecast)
 - IT compute load: ${compute} MW, held constant for 24 hours/day.
 - Cooling scenario: ${selected.label}.
-- Assumed PUE: ${selected.pue}; assumed direct water draw: ${selected.litersPerItKwh} L/IT kWh.
-- Total facility demand: ${number(estimate.facilityMw)} MW; overhead: ${number(estimate.overheadMw)} MW.
-- Daily electricity: ${number(estimate.dailyMwh)} MWh; on-site water draw: ${number(estimate.waterLiters)} L/day.
-- Comparable annual US residential electricity purchases: about ${Math.round(estimate.homes).toLocaleString('en-US')} customers (EIA 2022 baseline).
-- Assumptions are illustrative, not measured site data. No indirect water, carbon, cost, or ecological-impact model is included.
+- Assumed PUE: ${selected.pue}; assumed cooling WUE: ${selected.litersPerItKwh} L/IT kWh.
+- Total facility demand: ${number(estimate.totalFacilityMW)} MW; overhead: ${number(estimate.coolingPowerOverheadMW)} MW.
+- Daily IT electricity: ${number(estimate.dailyITEnergyKWh)} kWh/day; facility electricity: ${number(estimate.dailyFacilityEnergyKWh)} kWh/day.
+- Direct on-site water: ${number(estimate.dailyWaterGallons)} US gal/day (${cooling === 'air' ? 'domestic/staff needs and humidification; zero evaporative server cooling' : 'evaporative cooling WUE estimate'}).
+- Equivalent homes: ${estimate.equivalentHomes.toLocaleString('en-US')} at 1.2 kW continuous average household demand (28.8 kWh/day).
+- Assumptions are illustrative, not measured site data. The separate off-site water sensitivity is not included in this export; no carbon, cost, or ecological-impact model is included.
 - The announced 700 MW wind/storage package is not a confirmed facility load or continuous generation guarantee.
 
 ## Sources to check against our conditions
@@ -62,7 +63,7 @@ export default function HermantownJigsawExplorer() {
     <h3>Resource footprint estimator</h3>
     <div className={styles.notice}>
       <strong>Illustrative classroom model — not a forecast for Hermantown.</strong>
-      <p>The 50–700 MW slider represents a hypothetical IT load, not a disclosed site rating. The two cooling settings deliberately simplify a range of real designs. Weather, utilization, equipment, and water source can change the trade-off.</p>
+      <p>The 50–700 MW slider represents a hypothetical IT load, not a disclosed site rating. The three cooling scenarios deliberately simplify a range of real designs. Weather, utilization, equipment, and water source can change the trade-off.</p>
     </div>
     <div className={styles.field}>
       <label htmlFor={`${id}-load`}>Compute Load (MW): {compute}</label>
@@ -79,28 +80,43 @@ export default function HermantownJigsawExplorer() {
     </fieldset>
     <div role="status" aria-label="Resource footprint estimates" aria-live="polite" aria-atomic="true" className={styles.results}>
       <dl>
-        <div><dt>Total facility electricity demand</dt><dd>{number(estimate.facilityMw)} MW</dd></div>
-        <div><dt>Facility overhead above IT load</dt><dd>{number(estimate.overheadMw)} MW</dd></div>
-        <div><dt>Daily facility electricity</dt><dd>{number(estimate.dailyMwh)} MWh/day</dd></div>
-        <div><dt>Estimated direct on-site water draw</dt><dd>{number(estimate.waterLiters)} L/day <span>≈ {number(estimate.waterGallons)} US gal/day</span></dd></div>
-        <div><dt>Equivalent average residential electricity purchases</dt><dd>≈ {Math.round(estimate.homes).toLocaleString('en-US')} homes <span>Annual-energy comparison, not homes actually supplied</span></dd></div>
+        <div><dt>Daily IT energy</dt><dd>{number(estimate.dailyITEnergyKWh)} kWh/day</dd></div>
+        <div><dt>Selected PUE / cooling WUE</dt><dd>{selected.pue} / {selected.litersPerItKwh} L/kWh</dd></div>
+        <div><dt>Total facility power</dt><dd>{number(estimate.totalFacilityMW)} MW</dd></div>
+        <div><dt>Cooling / other facility power overhead above IT load</dt><dd>{number(estimate.coolingPowerOverheadMW)} MW</dd></div>
+        <div><dt>Daily facility electricity</dt><dd>{number(estimate.dailyFacilityEnergyKWh)} kWh/day</dd></div>
+        <div><dt>Direct on-site daily water {cooling === 'air' ? '(domestic / humidification)' : '(evaporative cooling)'}</dt><dd>{number(estimate.dailyWaterGallons)} US gal/day</dd></div>
+        <div><dt>Equivalent average residential homes</dt><dd>About {estimate.equivalentHomes.toLocaleString('en-US')} homes <span>At 1.2 kW continuously per household; a demand comparison, not homes actually supplied</span></dd></div>
       </dl>
     </div>
     <button className="button button--secondary" type="button" onClick={() => {setCompute(200); setCooling('evaporative');}}>Reset scenario</button>
+    <p>{cooling === 'air'
+      ? 'This air-cooled / closed-loop scenario evaporates ZERO water for server cooling (cooling WUE = 0 L/kWh). Municipal water serves domestic/staff needs and humidification. The formula gives 9,250-25,500 gal/day across this slider, roughly 10,000-25,000 gal/day. Extra electricity powers fans/chillers instead of evaporating water.'
+      : 'Water is estimated from IT energy, not total facility energy. The cool northern average and hot-day settings are illustrative climate scenarios, not measured Hermantown performance.'}</p>
     <details className={styles.assumptions}>
-      <summary>Show assumptions, formulas, and limitations</summary>
-      <p>The following coefficients were chosen for teaching. They are not Google design values, industry guarantees, or regulatory estimates.</p>
-      <table><caption>Illustrative scenario coefficients</caption><thead><tr><th>Scenario</th><th>PUE</th><th>Direct water draw (L/IT kWh)</th></tr></thead>
+      <summary>How is this calculated? (WUE &amp; PUE Math)</summary>
+      <p>PUE (Power Usage Effectiveness) = total facility energy / IT equipment energy over the same period. WUE (Water Usage Effectiveness) = on-site water in liters / IT equipment energy in kWh. With constant power for 24 hours, the energy ratio also gives the power ratio used here.</p>
+      <table><caption>Scenario assumptions, not prescribed ISO values or verified national averages</caption><thead><tr><th>Scenario</th><th>PUE</th><th>Cooling WUE (L/IT kWh)</th></tr></thead>
         <tbody>{Object.values(coolingModels).map((model) => <tr key={model.label}><th scope="row">{model.label}</th><td>{model.pue}</td><td>{model.litersPerItKwh}</td></tr>)}</tbody></table>
-      <ul>
-        <li>Total facility MW = IT MW × PUE (total facility power / IT power). Overhead includes cooling and other facility systems.</li>
-        <li>Daily MWh = facility MW × 24, assuming constant load; water L/day = IT MW × 1,000 × 24 × the selected water coefficient.</li>
-        <li>Homes comparison = facility MW × 1,000 × 8,760 / {annualHomeKwh.toLocaleString('en-US')}. The denominator is <a href="https://www.eia.gov/tools/faqs/faq.php?id=97&t=3">EIA’s 2022 US average annual purchases per residential customer</a>, not a Minnesota-specific demand or peak-load value.</li>
-        <li>Low-water cooling is not necessarily zero-water cooling. Closed-loop and advanced air designs differ; this single setting is a teaching simplification.</li>
-        <li>Direct water draw is not the same as consumptive loss or ecological damage. This model omits indirect water used in generating electricity, seasonal flows, emissions, costs, and construction.</li>
-        <li>The 700 MW resource announcement includes battery power capacity; MWh storage duration, timing, and utilization are needed to assess actual supply.</li>
-      </ul>
+      <pre>{`dailyITEnergyKWh = computeLoadMW * 1000 * 24;
+totalFacilityMW = computeLoadMW * pue;
+coolingPowerOverheadMW = totalFacilityMW - computeLoadMW;
+dailyFacilityEnergyKWh = totalFacilityMW * 1000 * 24;
+equivalentHomes = Math.round((totalFacilityMW * 1000) / 1.2);
+// Evaporative cooling: WUE = 0.85 or 1.8 L/kWh
+dailyWaterGallons = Math.round((dailyITEnergyKWh * wue) / 3.78541);
+// Air / closed-loop scenario: cooling WUE = 0; other municipal use
+dailyWaterGallons = Math.round(8000 + (computeLoadMW * 25));`}</pre>
+      <p>1 MW = 1,000 kW; kW * hours = kWh; 1 US gallon = 3.78541 liters. The household baseline is 1.2 kW continuously = 28.8 kWh/day = 10,512 kWh/year (about 10,500), a rounded teaching assumption rather than a Minnesota measurement.</p>
+      <p>At 100 MW IT load, the evaporative estimates are {number(estimateFootprint(100, 'evaporative').dailyWaterGallons)} gal/day (0.85 L/kWh) and {number(estimateFootprint(100, 'evaporativePeak').dailyWaterGallons)} gal/day (1.8 L/kWh). The air scenario gives 10,500 gal/day for non-cooling uses.</p>
+      <p>Overhead includes cooling, power conversion, and other facility systems; PUE cannot isolate cooling power. Zero cooling WUE describes this dry heat-rejection scenario, not every closed-loop design, and excludes its nonzero domestic/humidification water. These daily estimates are not measured annual ISO KPIs. Water use, withdrawal, and consumptive loss require consistent reporting boundaries; they are not interchangeable.</p>
+      <p>Definitions and context: <a href="https://www.iso.org/standard/30134-2">ISO/IEC 30134-2 (PUE)</a>, <a href="https://www.iso.org/standard/77692.html">ISO/IEC 30134-9 (WUE)</a>, and <a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/us_data_center_energy_usage_report_lbnl-2001637_0.pdf">LBNL's 2024 US Data Center Energy Usage Report</a>. The report's national fleet average is not the same as an evaporative-only scenario.</p>
     </details>
+    <aside className={styles.notice} aria-label="Indirect power-plant water">
+      <strong>Indirect power-plant water (off-site)</strong>
+      <p>As an optional sensitivity assumption, thermal/fossil generation at 1.5-2.0 gal/kWh would consume {number(Math.round(estimate.dailyFacilityEnergyKWh * 1.5))}-{number(Math.round(estimate.dailyFacilityEnergyKWh * 2))} gal/day off-site if it supplied all facility electricity. Formula: facility kWh/day * gal/kWh. This range is not a universal thermal-plant factor; fuel, cooling technology, and location matter. It is separate from the on-site estimate and is not added to it.</p>
+      <p>Wind and solar avoid most operational thermal-cooling water, making electricity sourcing relevant even with dry server cooling. The <a href={localSources.utility}>Hermantown agreement announcement</a> specifies 300 MW wind plus 400 MW battery capacity (700 MW total), not a wind/solar/battery package. Storage is not generation, and nameplate capacity does not guarantee continuous clean supply. This model does not estimate the actual grid mix or Hermantown's off-site water consumption.</p>
+    </aside>
 
     <h3>Home-group consensus: three conditions</h3>
     <p>Propose three conditions the City and utility regulators should require. For each, name the responsible party, a measurable protection, a source, and how compliance would be reported. You may reach different conclusions if you support them with evidence.</p>

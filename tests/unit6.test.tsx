@@ -80,12 +80,12 @@ describe('Unit 6 workspaces', () => {
     expect(screen.getByRole('link', {name: 'MPR · reported cooling options'})).toHaveAttribute('href', expect.stringContaining('mprnews.org'));
     const slider = screen.getByRole('slider', {name: /Compute Load/});
     fireEvent.change(slider, {target: {value: '50'}});
-    expect(screen.getByRole('status', {name: 'Resource footprint estimates'})).toHaveTextContent('60 MW');
-    await user.click(screen.getByLabelText('Closed-Loop / Advanced Air Cooling'));
-    expect(screen.getByRole('status', {name: 'Resource footprint estimates'})).toHaveTextContent('67.5 MW');
-    expect(screen.getByRole('status', {name: 'Resource footprint estimates'})).toHaveTextContent('60,000 L/day');
+    expect(screen.getByRole('status', {name: 'Resource footprint estimates'})).toHaveTextContent('56 MW');
+    await user.click(screen.getByLabelText('Closed-Loop / Advanced Air Cooling (Hermantown Proposal)'));
+    expect(screen.getByRole('status', {name: 'Resource footprint estimates'})).toHaveTextContent('62.5 MW');
+    expect(screen.getByRole('status', {name: 'Resource footprint estimates'})).toHaveTextContent('9,250 US gal/day');
     fireEvent.change(slider, {target: {value: '700'}});
-    expect(screen.getByRole('status', {name: 'Resource footprint estimates'})).toHaveTextContent('945 MW');
+    expect(screen.getByRole('status', {name: 'Resource footprint estimates'})).toHaveTextContent('875 MW');
     await user.type(screen.getByLabelText('Condition 1 — evidence and monitoring'), 'Publish monthly energy reports.');
     await user.click(screen.getByRole('button', {name: 'Copy Group Reflection'}));
     expect(copy).toHaveBeenCalledWith(expect.stringContaining('NOT a Hermantown forecast'));
@@ -93,22 +93,49 @@ describe('Unit 6 workspaces', () => {
     expect(copy).toHaveBeenCalledWith(expect.stringContaining('IT compute load: 700 MW'));
     await user.click(screen.getByRole('button', {name: 'Reset scenario'}));
     expect(slider).toHaveValue('200');
-    expect(screen.getByLabelText('Traditional Evaporative Water Cooling')).toBeChecked();
+    expect(screen.getByLabelText('Evaporative Water Cooling (Standard Climate / Cool Northern Average)')).toBeChecked();
     view.unmount(); render(<HermantownJigsawExplorer />);
     await waitFor(() => expect(screen.getByLabelText('Condition 1 — evidence and monitoring')).toHaveValue('Publish monthly energy reports.'));
   });
 });
 
-it('uses consistent energy and water units and separates overhead from IT load', () => {
-  const wet = estimateFootprint(100, 'evaporative');
-  const air = estimateFootprint(100, 'air');
-  expect(wet.facilityMw).toBe(120);
-  expect(wet.overheadMw).toBe(20);
-  expect(wet.dailyMwh).toBe(2880);
-  expect(wet.waterLiters).toBe(4_320_000);
-  expect(wet.waterGallons).toBeCloseTo(1_141_223.265, 2);
-  expect(wet.homes).toBeCloseTo(120 * 1000 * 8760 / 10791);
-  expect(air.waterLiters).toBe(120_000);
-  expect(air.facilityMw).toBeGreaterThan(wet.facilityMw);
+it('uses IT energy for WUE, facility power for homes, and separate municipal water for dry cooling', () => {
+  for (const load of [50, 100, 300, 600, 700]) {
+    for (const [scenario, pue, wue] of [
+      ['evaporative', 1.12, 0.85], ['evaporativePeak', 1.15, 1.8], ['air', 1.25, 0],
+    ] as const) {
+      const result = estimateFootprint(load, scenario);
+      expect(result.dailyITEnergyKWh).toBe(load * 24_000);
+      expect(result.totalFacilityMW).toBeCloseTo(load * pue);
+      expect(result.coolingPowerOverheadMW).toBeCloseTo(load * (pue - 1));
+      expect(result.dailyFacilityEnergyKWh).toBeCloseTo(load * pue * 24_000);
+      expect(result.equivalentHomes).toBe(Math.round(load * pue * 1000 / 1.2));
+      expect(result.dailyWaterGallons).toBe(scenario === 'air'
+        ? Math.round(8000 + load * 25) : Math.round(load * 24_000 * wue / 3.78541));
+    }
+  }
+  expect(estimateFootprint(100, 'evaporative').dailyWaterGallons).toBe(538911);
+  expect(estimateFootprint(100, 'evaporativePeak').dailyWaterGallons).toBe(1141224);
+  expect(estimateFootprint(100, 'air').dailyWaterGallons).toBe(10500);
   for (const load of [49, 701, NaN, Infinity]) expect(() => estimateFootprint(load, 'air')).toThrow(RangeError);
+});
+
+it('switches the peak scenario, exposes formulas, and exports the selected water boundary', async () => {
+  const user = userEvent.setup();
+  const copy = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue();
+  render(<HermantownJigsawExplorer />);
+  fireEvent.change(screen.getByRole('slider'), {target: {value: '100'}});
+  await user.click(screen.getByLabelText('Evaporative Water Cooling (Peak Hot Day / National Comparison)'));
+  const results = screen.getByRole('status', {name: 'Resource footprint estimates'});
+  expect(results).toHaveTextContent('1,141,224 US gal/day');
+  expect(results).toHaveTextContent('95,833 homes');
+  await user.click(screen.getByText('How is this calculated? (WUE & PUE Math)'));
+  expect(screen.getByText(/dailyITEnergyKWh = computeLoadMW/)).toBeVisible();
+  await user.click(screen.getByLabelText('Closed-Loop / Advanced Air Cooling (Hermantown Proposal)'));
+  expect(results).toHaveTextContent('10,500 US gal/day');
+  expect(screen.getByText(/This air-cooled/)).toHaveTextContent('ZERO water for server cooling');
+  expect(screen.getByLabelText('Indirect power-plant water')).toHaveTextContent('4,500,000-6,000,000 gal/day');
+  await user.click(screen.getByRole('button', {name: 'Copy Group Reflection'}));
+  expect(copy).toHaveBeenCalledWith(expect.stringContaining('zero evaporative server cooling'));
+  expect(copy).toHaveBeenCalledWith(expect.stringContaining('10,500 US gal/day'));
 });
