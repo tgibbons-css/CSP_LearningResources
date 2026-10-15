@@ -61,6 +61,7 @@ export default function HermantownJigsawExplorer() {
     }}</AccessibleTabs>
 
     <h3>Resource footprint estimator</h3>
+    <p><strong>PUE means Power Usage Effectiveness:</strong> total facility energy divided by IT equipment energy over the same period. A PUE of 1.25 means 1 kWh for IT equipment plus 0.25 kWh for cooling and other facility overhead. Lower PUE means less overhead per unit of IT energy; it does not measure water use.</p>
     <div className={styles.notice}>
       <strong>Illustrative classroom model — not a forecast for Hermantown.</strong>
       <p>The 50–700 MW slider represents a hypothetical IT load, not a disclosed site rating. The three cooling scenarios deliberately simplify a range of real designs. Weather, utilization, equipment, and water source can change the trade-off.</p>
@@ -81,7 +82,8 @@ export default function HermantownJigsawExplorer() {
     <div role="status" aria-label="Resource footprint estimates" aria-live="polite" aria-atomic="true" className={styles.results}>
       <dl>
         <div><dt>Daily IT energy</dt><dd>{number(estimate.dailyITEnergyKWh)} kWh/day</dd></div>
-        <div><dt>Selected PUE / cooling WUE</dt><dd>{selected.pue} / {selected.litersPerItKwh} L/kWh</dd></div>
+        <div><dt>Power Usage Effectiveness (PUE)</dt><dd>{selected.pue} <span>Total facility energy / IT equipment energy</span></dd></div>
+        <div><dt>Cooling Water Usage Effectiveness (WUE)</dt><dd>{selected.litersPerItKwh} L/kWh</dd></div>
         <div><dt>Total facility power</dt><dd>{number(estimate.totalFacilityMW)} MW</dd></div>
         <div><dt>Cooling / other facility power overhead above IT load</dt><dd>{number(estimate.coolingPowerOverheadMW)} MW</dd></div>
         <div><dt>Daily facility electricity</dt><dd>{number(estimate.dailyFacilityEnergyKWh)} kWh/day</dd></div>

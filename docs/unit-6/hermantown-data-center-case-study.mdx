@@ -39,6 +39,16 @@ The pod fact cards use March–June 2026 sources, checked October 14, 2026.
 5. Reach a consensus on **four measurable conditions** for the City and utility regulators.
 6. Copy your group's work into the <a href="https://docs.google.com/document/d/1_sm_cGpVOs45VFb8ZrhnA9UxNItVV4-HrkgEJ1Prrjw/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Shared Hermantown Case Study Google Doc</a>. Include your evidence and proposed conditions so classmates can review your reasoning.
 
+### Reading the estimator: What does PUE mean?
+
+**PUE stands for Power Usage Effectiveness.** It compares the energy used by the entire data center with the energy used by its information technology (IT) equipment, such as servers, storage, and networking equipment.
+
+**PUE = total facility energy ÷ IT equipment energy**, measured over the same period. PUE is a ratio with no units.
+
+For example, a **PUE of 1.25** means the facility uses **1.25 kWh for every 1 kWh used by IT equipment**. The extra **0.25 kWh** supports cooling, power conversion, and other facility systems. With a constant 100 MW IT load, that ratio corresponds to 125 MW of total facility power and 25 MW of overhead.
+
+A PUE closer to **1.0** means less facility overhead per unit of IT energy. It does not tell us how useful the computing is, how much water is used, or whether the electricity comes from clean sources. Use PUE alongside the water estimates when comparing cooling choices.
+
 <HermantownJigsawExplorer />
 
 :::tip Copy your work to the shared Google Doc
@@ -63,6 +73,44 @@ Use **Copy Group Reflection** in the workspace above, then paste your summary in
 For each claim, record the source, publication date, evidence, and what remains uncertain. Ask whether it describes a proposal, a commitment, a modeled scenario, or an observed outcome. Low direct cooling-water use does not settle questions about stormwater, habitat, indirect power-generation water, or community impacts.
 :::
 
+## From One Day to a Full Year: Seasonal Cooling Trade-offs
+
+The estimator above compares cooling choices under one set of conditions. But a data center operates throughout the year. How might Minnesota's changing temperatures affect electricity demand and water use?
+
+In the <a href="https://docs.google.com/spreadsheets/d/1gdclunNC525hWhev2urzdnCYQTotwaCOqqSjB1kAcwU/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Hermantown Seasonal Cooling Spreadsheet</a>, you will compare evaporative cooling and air cooling across 12 months. The spreadsheet uses illustrative assumptions, not measured Hermantown operating data.
+
+### Before you begin
+
+Discuss these questions as a class:
+
+- Why might cooling electricity and water use change between January and July?
+- How does **power** in MW become monthly **energy** in MWh?
+- Does reducing on-site water use necessarily reduce electricity use?
+
+Trace the spreadsheet's completed January example:
+
+| Calculation | Relationship |
+| --- | --- |
+| Monthly IT energy | IT load in MW × 24 × days in month |
+| Total facility energy | IT energy × PUE (Power Usage Effectiveness) |
+| Facility energy overhead | Total facility energy − IT energy |
+| Evaporative water use | IT energy in MWh × 1,000 × WUE in L/kWh × gallons per liter |
+
+**Power Usage Effectiveness (PUE)** is the ratio of total facility energy to IT energy. Multiply monthly IT energy by PUE to include facility overhead. **Water Usage Effectiveness (WUE)** measures water use per unit of IT energy. In the water calculation, multiplying MWh by 1,000 converts to kWh before applying WUE. Facility overhead includes cooling and other facility systems.
+
+The spreadsheet uses `IF()` to select the air-cooling **Power Usage Effectiveness (PUE)** from temperature conditions. A higher PUE means more facility energy for the same IT energy. As you extend formulas, notice which references change by month and which constants stay fixed using `$`, such as `$B$5`.
+
+### Out-of-class spreadsheet assignment
+
+Work in the **Seasonal Cooling Model (Student)** tab, following the spreadsheet's instructions.
+
+1. Complete the remaining monthly calculations for both cooling approaches.
+2. Calculate annual totals and the electricity–water differences between the approaches.
+3. Create a line or combo chart comparing monthly electricity overhead and evaporative water use. Label units clearly; use separate axes or charts for MWh and gallons.
+4. Answer the **Overview Questions** on the spreadsheet's **question tab**.
+
+Use your results as evidence in the reflection below. Follow Brightspace instructions for submission details.
+
 ## Out-of-class reflection: The Cloud in Our Backyard
 
 :::info Individual reflection
@@ -72,5 +120,5 @@ Compare your earlier mental model of “the cloud” with the physical infrastru
 2. **Which trade-offs?** Discuss specific electricity and water/cooling choices: the possible electricity penalty of low-water air or closed-loop cooling, Minnesota Power’s 700 MW wind/storage plan, and local watershed concerns. Cite the source and date of the claims you use. If you cite an estimator result, label it as an illustrative scenario and state its assumptions.
 3. **Is the Value worth the footprint?** Give your own conclusion about whether the computing **Value** justifies the local physical footprint in St. Louis County. Explain who gains, who bears costs or risks, and what conditions or new evidence could change your position.
 
-Include links to your evidence and acknowledge an uncertainty or counterargument. Use the class Brightspace instructions for the submission location and any due date or length requirement. Copying an activity summary does not submit this individual reflection.
+Include a specific result or pattern from your completed spreadsheet. Include links to your evidence and acknowledge an uncertainty or counterargument. Use the class Brightspace instructions for the submission location and any due date or length requirement. Copying an activity summary does not submit this individual reflection.
 :::
