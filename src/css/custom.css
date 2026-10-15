@@ -1,0 +1,94 @@
+:root {
+  --ifm-color-primary: #155b64;
+  --ifm-color-primary-dark: #13525a;
+  --ifm-color-primary-darker: #124d55;
+  --ifm-color-primary-darkest: #0f4046;
+  --ifm-color-primary-light: #17646e;
+  --ifm-color-primary-lighter: #186973;
+  --ifm-color-primary-lightest: #1c7682;
+  --ifm-font-family-base: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ifm-heading-font-family: var(--ifm-font-family-base);
+  --ifm-background-color: #fcfcf9;
+  --ifm-font-color-base: #23383d;
+  --ifm-line-height-base: 1.7;
+  --ifm-heading-line-height: 1.25;
+  --ifm-global-radius: 8px;
+  --surface: #fff;
+  --soft-surface: #eff5f2;
+  --border: #d6e1dc;
+  --muted: #52656a;
+}
+[data-theme='dark'] {
+  --ifm-color-primary: #86d4c8;
+  --ifm-color-primary-dark: #6ccbbd;
+  --ifm-color-primary-darker: #5fc6b7;
+  --ifm-color-primary-darkest: #3da997;
+  --ifm-color-primary-light: #a0ddd3;
+  --ifm-color-primary-lighter: #ade2da;
+  --ifm-color-primary-lightest: #d4f0eb;
+  --ifm-background-color: #142328;
+  --ifm-background-surface-color: #1b2d32;
+  --ifm-font-color-base: #e7efec;
+  --surface: #1b2d32;
+  --soft-surface: #20373b;
+  --border: #41585c;
+  --muted: #b8cac8;
+}
+* {box-sizing: border-box;}
+:focus-visible {outline: 3px solid var(--ifm-color-primary); outline-offset: 4px;}
+.navbar {border-bottom: 1px solid var(--border); box-shadow: none;}
+.navbar__title {letter-spacing: .04em;}
+.eyebrow {font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--ifm-color-primary);}
+.course-hero {background: var(--soft-surface); border-bottom: 1px solid var(--border); position: relative; overflow: hidden;}
+.course-hero::after {content: '01'; position: absolute; right: 5%; top: 5%; font-weight: 800; font-size: clamp(10rem, 25vw, 24rem); line-height: 1; font-family: var(--ifm-heading-font-family); color: var(--ifm-color-primary); opacity: .055; pointer-events: none;}
+.hero-content {padding-top: 4.5rem; padding-bottom: 4rem; position: relative; z-index: 1;}
+.course-hero h1 {font-size: clamp(2.5rem, 5.5vw, 4.5rem); letter-spacing: -.045em; margin: 1rem 0 1.25rem;}
+.hero-description {max-width: 37rem; font-size: 1.2rem; color: var(--muted); margin-bottom: 1.75rem;}
+.hero-caption {font-size: .8rem; color: var(--muted); margin: 1.25rem 0 0;}
+.course-main {padding-top: 3.5rem; padding-bottom: 3.5rem;}
+.section-heading {display: flex; justify-content: space-between; align-items: end; gap: 1.5rem;}
+.section-heading h2 {font-size: 2rem; letter-spacing: -.03em; margin-bottom: .5rem;}
+.section-heading > p, .framework-note {color: var(--muted); font-size: .9rem;}
+.framework-note {margin: .75rem 0 1.75rem;}
+.resource-grid {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;}
+.resource-card {padding: 1.6rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); transition: border-color .15s; min-width: 0;}
+.resource-card:hover {border-color: var(--ifm-color-primary);}
+.resource-card h3 {font-size: 1.15rem; line-height: 1.4; margin: .8rem 0;}
+.resource-card h3 a {text-decoration: underline; text-underline-offset: 4px;}
+.resource-card p {color: var(--muted); font-size: .95rem;}
+.card-meta {display: inline-block; border-top: 1px solid var(--border); padding-top: .8rem; font-size: .75rem; color: var(--muted); width: 100%;}
+.study-guide {margin-top: 3rem; padding: 2rem; background: var(--soft-surface); border-radius: 10px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 2rem;}
+.study-guide p:last-child {margin-bottom: 0;}
+.learning-objectives, .instructional-callout {border-left: 4px solid var(--ifm-color-primary); padding: 1rem 1.25rem; margin: 1.5rem 0; background: var(--soft-surface); border-radius: 0 8px 8px 0;}
+.objectives-label, .callout-title {font-weight: 700; margin-bottom: .5rem;}
+.learning-objectives ul, .instructional-callout p:last-child {margin-bottom: 0;}
+.callout-important {border-left-style: double; border-left-width: 6px;}
+.activity-panel {padding: 1.5rem; border: 1px solid var(--border); border-radius: 10px; margin: 1.5rem 0; background: var(--surface);}
+.activity-panel fieldset {border: 0; padding: 0; margin: 0 0 1rem; min-width: 0;}
+.activity-panel legend {font-size: 1.05rem; font-weight: 700; margin-bottom: .75rem;}
+.answer-option {display: flex; align-items: center; gap: .75rem; padding: .7rem; cursor: pointer; border-radius: 6px;}
+.answer-option:hover {background: var(--soft-surface);}
+.answer-option input {width: 1.1rem; height: 1.1rem; flex-shrink: 0; accent-color: var(--ifm-color-primary);}
+.activity-actions {display: flex; flex-wrap: wrap; gap: .75rem;}
+.button {min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .5rem;}
+.activity-feedback:empty {display: none;}
+.activity-feedback p {margin: 1rem 0 0;}
+.bit-controls {display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem;}
+.bit-toggle {border: 2px solid var(--border); color: var(--ifm-font-color-base); background: var(--soft-surface); padding: .8rem .25rem; border-radius: 8px; cursor: pointer; font: inherit; font-size: .8rem;}
+.bit-toggle[aria-pressed='true'] {border-color: var(--ifm-color-primary); background: var(--ifm-color-primary); color: var(--ifm-background-color);}
+.bit-value {display: block; font-size: 2rem; font-weight: 700;}
+.binary-result {margin: 1.25rem 0; font-variant-numeric: tabular-nums;}
+.activity-note {font-size: .8rem; color: var(--muted); margin: 1rem 0 0;}
+.footer {background: #12333c;}
+@media (max-width: 996px) {.resource-grid {grid-template-columns: repeat(2, minmax(0, 1fr));}}
+@media (max-width: 600px) {
+  .hero-content {padding-top: 2.75rem; padding-bottom: 2.75rem;}
+  .course-main {padding-top: 2rem;}
+  .resource-grid, .study-guide {grid-template-columns: 1fr;}
+  .section-heading {display: block;}
+  .study-guide {padding: 1.5rem; gap: .5rem;}
+  .activity-panel {padding: 1rem;}
+  .bit-controls {gap: .4rem;}
+  .bit-toggle {font-size: .7rem;}
+}
+@media (prefers-reduced-motion: reduce) {* {scroll-behavior: auto !important; transition: none !important;}}

@@ -1,0 +1,60 @@
+---
+title: Explore binary place values
+description: A short demonstration lesson with a four-bit binary explorer and a practice question.
+sidebar_label: Binary explorer
+sidebar_position: 2
+---
+
+import LearningObjectives from '@site/src/components/LearningObjectives';
+import InstructionalCallout from '@site/src/components/InstructionalCallout';
+import BinaryExplorer from '@site/src/components/BinaryExplorer';
+import SelfCheck from '@site/src/components/SelfCheck';
+import ResourceCard from '@site/src/components/ResourceCard';
+
+<InstructionalCallout title="Demonstration lesson">
+This short lesson establishes the pattern for future activities. It is ungraded and does not submit or save responses.
+</InstructionalCallout>
+
+## Learning objectives
+
+<LearningObjectives items={[
+  'Identify the place values in a four-bit binary number.',
+  'Represent a decimal number from 0 through 15 using four bits.',
+]} />
+
+## Reading: four bits, sixteen possibilities
+
+A bit has two possible values: **0** or **1**. In this four-bit representation, the place values from left to right are **8, 4, 2, and 1**. Add the place values of the bits set to 1 to find the decimal value. For example, binary **0101** represents **4 + 1 = 5**.
+
+## Interactive activity
+
+Try representing **5**, then **10**, then **15**. Use Tab to reach a bit and Space or Enter to toggle it. On a touchscreen, tap the bit.
+
+<BinaryExplorer />
+
+<InstructionalCallout tone="tip" title="Pause and predict">
+What changes when you turn on the leftmost bit? Predict the new total before toggling it.
+</InstructionalCallout>
+
+## Self-check
+
+<SelfCheck
+  question="What decimal value does binary 1010 represent?"
+  options={[
+    {id: 'six', text: '6'},
+    {id: 'ten', text: '10'},
+    {id: 'twelve', text: '12'},
+  ]}
+  correctAnswer="ten"
+  explanation="The active place values are 8 and 2. Adding them gives 10."
+/>
+
+## External resources
+
+<ResourceCard title="Computing learning resources" href="https://www.csunplugged.org/en/" label="Optional exploration">
+CS Unplugged offers activities for exploring computing ideas, including binary representation.
+</ResourceCard>
+
+## Assignment or reflection
+
+Optional practice: choose a number from 0 through 15 and explain which bits represent it. This demonstration has no submission requirement.

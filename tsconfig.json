@@ -1,0 +1,11 @@
+{
+  "extends": "@docusaurus/tsconfig",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "strict": true,
+    "types": ["node", "@docusaurus/module-type-aliases", "@testing-library/jest-dom"],
+    "paths": { "@site/*": ["./*"] }
+  },
+  "exclude": ["node_modules", "build", ".docusaurus"]
+}

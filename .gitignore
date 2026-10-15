@@ -1,0 +1,7 @@
+node_modules/
+build/
+.docusaurus/
+coverage/
+.review/
+*.log
+.DS_Store
