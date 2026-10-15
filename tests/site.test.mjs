@@ -62,15 +62,29 @@ test('all built internal page links, assets, and anchors resolve under the base 
   }
 });
 
-test('Unit 6 case study is reachable and statically renders both accessible activities', () => {
-  const href = `${base}docs/unit-6/data-centers-big-data/`;
+test('Unit 6 lessons separate activities and preserve the reading sequence', () => {
+  const firstHref = `${base}docs/unit-6/why-we-need-data-centers/`;
+  const caseHref = `${base}docs/unit-6/hermantown-data-center-case-study/`;
   const overview = page('docs/unit-6');
-  assert.ok(overview.querySelector(`a[href="${href}"]`));
-  const lesson = page('docs/unit-6/data-centers-big-data');
-  assert.ok(lesson.querySelector(`aside a[href="${href}"]`));
-  assert.equal(lesson.querySelectorAll('[role="tab"]').length, 9);
-  assert.ok(lesson.querySelector('input[type="range"][min="50"][max="700"]'));
-  assert.match(lesson.body.textContent, /not a forecast for Hermantown/);
-  assert.ok(lesson.querySelector(`a.pagination-nav__link--prev[href="${base}docs/unit-6/"]`));
-  assert.ok(lesson.querySelector(`a.pagination-nav__link--next[href="${base}docs/unit-7/"]`));
+  for (const href of [firstHref, caseHref]) assert.ok(overview.querySelector(`a[href="${href}"]`));
+  const first = page('docs/unit-6/why-we-need-data-centers');
+  const caseStudy = page('docs/unit-6/hermantown-data-center-case-study');
+  assert.equal(first.querySelector('h1').textContent, 'Why We Need Data Centers');
+  assert.equal(caseStudy.querySelector('h1').textContent, 'Hermantown Data Center Case Study');
+  assert.equal(first.querySelectorAll('[role="tab"]').length, 5);
+  assert.equal(first.querySelector('input[type="range"]'), null);
+  assert.equal(caseStudy.querySelectorAll('[role="tab"]').length, 4);
+  assert.ok(caseStudy.querySelector('input[type="range"][min="50"][max="700"]'));
+  assert.match(caseStudy.body.textContent, /not a forecast for Hermantown/);
+  assert.ok(caseStudy.getElementById('out-of-class-reflection-the-cloud-in-our-backyard'));
+  assert.equal(first.getElementById('out-of-class-reflection-the-cloud-in-our-backyard'), null);
+  for (const doc of [first, caseStudy]) {
+    for (const href of [firstHref, caseHref]) assert.ok(doc.querySelector(`aside a[href="${href}"]`));
+    assert.ok(doc.querySelector('nav[aria-label="Breadcrumbs"]'));
+  }
+  assert.ok(overview.querySelector(`a.pagination-nav__link--next[href="${firstHref}"]`));
+  assert.ok(first.querySelector(`a.pagination-nav__link--prev[href="${base}docs/unit-6/"]`));
+  assert.ok(first.querySelector(`a.pagination-nav__link--next[href="${caseHref}"]`));
+  assert.ok(caseStudy.querySelector(`a.pagination-nav__link--prev[href="${firstHref}"]`));
+  assert.ok(caseStudy.querySelector(`a.pagination-nav__link--next[href="${base}docs/unit-7/"]`));
 });

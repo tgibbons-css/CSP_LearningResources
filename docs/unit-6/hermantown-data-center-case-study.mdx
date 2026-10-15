@@ -1,95 +1,28 @@
 ---
-title: "Big Data Infrastructure & The Hermantown Data Center Case Study"
-description: "Connect Big Data concepts to physical infrastructure, investigate the Hermantown proposal, and model energy–water trade-offs."
-sidebar_label: "Big Data & Data Centers"
-sidebar_position: 2
+title: "Hermantown Data Center Case Study"
+description: "Investigate the Hermantown proposal, compare perspectives, and model electricity and water trade-offs."
+sidebar_label: "Hermantown Case Study"
+sidebar_position: 3
 ---
 
 import LearningObjectives from '@site/src/components/LearningObjectives';
-import TechSynthesisBuilder from '@site/src/components/Unit6/TechSynthesisBuilder';
 import HermantownJigsawExplorer from '@site/src/components/Unit6/HermantownJigsawExplorer';
 
-<div className="unit-intro">
-<p className="eyebrow">Technical concepts → physical systems → community decisions</p>
-<p className="unit-intro-lead">Where does “the cloud” actually live?</p>
-<p>Start with the data behind everyday services. Follow it into server clusters, power systems, cooling equipment, and a proposed campus in Hermantown, Minnesota.</p>
-</div>
+Build on [Why We Need Data Centers](./why-we-need-data-centers.mdx) to investigate a local proposal through evidence and community perspectives.
 
 ## Learning objectives
 
 <LearningObjectives items={[
-  'Connect the 5 V’s, data formats, and distributed computing to physical infrastructure needs.',
-  'Compare a developer’s claims, news reporting, primary documents, and an advocacy argument.',
-  'Use a model to explain electricity–water trade-offs while stating its assumptions and limitations.',
+  'Compare developer claims, news reporting, primary documents, and an advocacy argument.',
+  'Use a model to explain electricity and water trade-offs while stating its assumptions and limitations.',
   'Support a position about computing value and local impacts with evidence and measurable conditions.',
 ]} />
 
 :::info Your work stays on this device
-The two workspaces save notes automatically in this browser’s local storage. They do not sync between computers or submit work to the class. Copy your summary and paste it into the Shared Synthesis Document or Brightspace board provided by your instructor. On a shared computer, avoid personal information and remove your drafts through the browser’s site-data controls when finished.
+This workspace saves notes automatically in this browser's local storage. It does not sync between computers or submit work to the class. Copy your summary and paste it into the class document or Brightspace destination. On a shared computer, avoid personal information and remove your drafts through the browser's site-data controls when finished.
 :::
 
-## Part 1: How Big Data drives physical infrastructure
-
-### From a spreadsheet to a server cluster
-
-A small table can fit on a laptop. A service receiving many simultaneous requests, storing many copies of media, or training a large model may need much more compute, storage, and network capacity. Distributed systems spread work across machines, but those machines still need racks, cables, electricity, maintenance, and cooling. [Cloudflare’s cloud overview](https://www.cloudflare.com/learning/cloud/what-is-the-cloud/) connects remote services to the physical servers that deliver them.
-
-Scale creates pressure; it does not make one enormous building the only possible design. Workload reduction, efficient software, location choices, and sharing or distributing resources also matter.
-
-### The 5 V’s of Big Data
-
-Use **Volume** (amount), **Velocity** (arrival and processing rate), **Variety** (formats), **Veracity** (trustworthiness), and **Value** (useful outcomes) to describe a workload. Which V increases resource needs? Which might help us decide whether the work is worth doing?
-
-- [IBM: What is Big Data?](https://www.ibm.com/topics/big-data)
-- [Oracle: What Is Big Data?](https://www.oracle.com/big-data/what-is-big-data/)
-- [Mobile CSP: 7.2 Big Data](https://runestone.academy/ns/books/published/mobilecsp/Unit7-Using-Analyzing-Data/Big-Data.html)
-- [YouTube: Simplilearn - What is Big Data? 5 V's Explained](https://www.youtube.com/watch?v=bAyrObl7TYE)
-
-### Supporting context: Data formats
-
-Compare a table with consistent columns, a JSON record with keys and nested values, and an image or audio file without that tabular schema. “Unstructured” does not mean meaningless. JSON has structure even when records vary. AI workloads can combine structured records, JSON, text, and media; **format alone does not determine size**.
-
-- [AWS: Structured Data vs. Unstructured Data](https://aws.amazon.com/compare/the-difference-between-structured-data-and-unstructured-data/)
-- [MDN: Working with JSON](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON)
-- [YouTube: IBM Technology - Structured vs Unstructured Data Explained](https://www.youtube.com/watch?v=eK3I6oI_4Is)
-
-### Supporting context: Distributed computing and cloud infrastructure
-
-Parallel computing performs work concurrently. Distributed computing coordinates machines connected by a network. Cluster storage spreads data across machines and may replicate it for resilience. Adding machines can increase capacity, but communication, coordination, and network bottlenecks can limit the benefit. Use the sources below to connect these ideas to physical infrastructure.
-
-- [Cloudflare: What Is the Cloud?](https://www.cloudflare.com/learning/cloud/what-is-the-cloud/)
-- [AWS: What Is Cloud Computing?](https://aws.amazon.com/what-is-cloud-computing/)
-- [AWS: What Is Distributed Computing?](https://aws.amazon.com/what-is/distributed-computing/)
-- [Microsoft MakeCode CSP: Parallel and Distributed Computing](https://microsoft.github.io/makecode-csp/unit-2/day-6/parallel-distributed-computing/)
-- [YouTube: IBM Technology - Distributed Computing Explained](https://www.youtube.com/watch?v=qJb33Lp8U5U)
-
-:::note Video access
-The supplied video links are preserved. The two IBM Technology video links and the CNBC link below could not be independently retrieved during preparation; the instructor should confirm availability and titles before class. If a video is unavailable, use the written readings for that topic.
-:::
-
-### In-class collaborative synthesis
-
-1. Form **five teams**, each assigned one V: **Volume, Velocity, Variety, Veracity, or Value**.
-2. Spend **15 minutes** exploring the Big Data resources above. Use your team's tab below to prepare your assigned section of the [Shared 5 V's Synthesis Document](https://docs.google.com/document/d/1sxQy6eFQVi9U4ShmW25m76Uzs_shPyw7uTz9tJeR0Qo/edit?usp=sharing). Include all four responses:
-   - A definition of your V in your own words.
-   - A specific real-world example, with a source link.
-   - A short quote from one of the sources, with a source link. Use quotation marks and reproduce the wording accurately.
-   - One question or trade-off for the class to consider.
-3. Use **Copy This Team's Summary**, then paste into your assigned V section of the shared Google Doc. The website saves your draft locally; it does not update the Google Doc automatically.
-4. Give a **2-minute explanation** of your V, example, and source quote. Use your team's focus question below to guide discussion.
-5. Read another team's section. Add one question or connection between its V and your own.
-
-| Team | Focus question |
-| --- | --- |
-| **Volume** | How does the amount of data affect storage, replication, and processing needs? |
-| **Velocity** | How do arrival rates and response-time expectations affect processing and networking? |
-| **Variety** | How do different formats affect storage, integration, and analysis? |
-| **Veracity** | How do errors, missing information, and bias affect cleaning, validation, and trust? |
-| **Value** | What useful outcome does the computing provide, and does it justify its resource costs? |
-
-<TechSynthesisBuilder />
-
-## Part 2: Unmasking the “invisible cloud” — the Hermantown jigsaw
+## Unmasking the invisible cloud
 
 The cloud can feel weightless when we tap an app. Its physical infrastructure occupies land and uses resources. Now examine Google’s proposed hyperscale data center in Hermantown, in St. Louis County, Minnesota. Your task is to reason from evidence, not to assume that the project is either inherently beneficial or inherently harmful.
 
@@ -97,7 +30,7 @@ The cloud can feel weightless when we tap an app. Its physical infrastructure oc
 The pod fact cards use March–June 2026 sources, checked October 14, 2026. MPR’s June 25 reporting describes an approximately **$2 billion**, roughly **280-acre** proposal near **Midway Road and Morris Thomas Road**. The City’s March 31 scoping notice describes a **278-acre study area**. Consult the [City’s project and environmental-review page](https://hermantownmn.com/project/) for later documents and decisions; the earlier readings do not establish today’s approval status.
 :::
 
-### How the jigsaw works
+## How the jigsaw works
 
 1. Form four expert pods: energy, water, economic/compute value, and community/land use.
 2. Each pod uses its questions and linked sources to prepare **one supported claim, one uncertainty, and one proposed condition**. Distinguish reported statements from measured outcomes.
@@ -109,7 +42,7 @@ The pod fact cards use March–June 2026 sources, checked October 14, 2026. MPR�
 [Minnesota Power’s announcement](https://hermantownmn.com/wp-content/uploads/2026/03/PressRelease03032026.pdf) describes **300 MW wind + 400 MW battery capacity**, totaling 700 MW of new resources. Batteries store energy rather than generating it. The announcement is not a confirmed 700 MW site load, a promise of 700 MW every hour, or a statement of battery storage duration. MW measures power; MWh measures energy over time.
 :::
 
-### Estimator math: power, energy, and water
+## Estimator math: power, energy, and water
 
 The estimator assumes a constant IT load for 24 hours: **IT kWh/day = IT MW * 1,000 * 24**. **PUE = facility energy / IT energy**, so facility MW = IT MW * PUE. The scenarios use PUE **1.12** (standard evaporative), **1.15** (hot-day evaporative), and **1.25** (air/closed-loop). Overhead includes cooling and other facility systems.
 
@@ -119,14 +52,14 @@ These are illustrative classroom coefficients, not ISO-prescribed performance va
 
 <HermantownJigsawExplorer />
 
-### Resource library: national energy, water & infrastructure context
+## Resource library: national energy, water & infrastructure context
 
 - [Google Data Centers: Visual & Infrastructure Tour](https://datacenters.google/) — the operator’s explanation of its facilities and services.
 - [U.S. DOE: Data Center Electricity Demand Report Summary (2024)](https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers) — historical estimates and projected national electricity demand. Projections are scenarios, not measurements of the Hermantown proposal.
 - [IEA: Energy and AI Report (2025)](https://www.iea.org/reports/energy-and-ai) — broader energy-system context for AI.
 - [YouTube: CNBC - Exelon CEO Talks AI's Power Demand and Looming Shortages](https://www.youtube.com/watch?v=e_V15DNIUtc) — a supplied interview link; confirm availability before class.
 
-### Resource library: the proposed Hermantown Google data center
+## Resource library: the proposed Hermantown Google data center
 
 - [City of Hermantown Official Release: Google Announces Plans for Hermantown Data Center](https://hermantownmn.com/community/community-highlights/google-announces-plans-for-hermantown-data-center/) — March 3, 2026 primary announcement; evaluate the City’s stated expectations.
 - [MPR News: At packed Hermantown open house, Google tries to ease data center concerns](https://www.mprnews.org/story/2026/06/25/at-packed-hermantown-open-house-google-tries-to-ease-data-center-concerns) — June 25, 2026 reporting with developer and resident perspectives.
@@ -137,12 +70,12 @@ These are illustrative classroom coefficients, not ISO-prescribed performance va
 For each claim, record the source, publication date, evidence, and what remains uncertain. Ask whether it describes a proposal, a commitment, a modeled scenario, or an observed outcome. Low direct cooling-water use does not settle questions about stormwater, habitat, indirect power-generation water, or community impacts.
 :::
 
-## Part 3: Out-of-class reflection — “The Cloud in Our Backyard”
+## Out-of-class reflection: The Cloud in Our Backyard
 
 :::info Individual reflection
 Compare your earlier mental model of “the cloud” with the physical infrastructure shown by [Google Data Centers](https://datacenters.google/) and the Hermantown case study. Write an individual, evidence-based response addressing all three:
 
-1. **Why this scale?** Use at least two of the **5 V’s**, or the **unstructured-data/distributed-computing** concepts from Part 1, to explain why facilities of this scale are being built. Explain the connections rather than simply naming terms.
+1. **Why this scale?** Use at least two of the **5 V’s**, or the **unstructured-data/distributed-computing** concepts from [Why We Need Data Centers](./why-we-need-data-centers.mdx), to explain why facilities of this scale are being built. Explain the connections rather than simply naming terms.
 2. **Which trade-offs?** Discuss specific electricity and water/cooling choices: the possible electricity penalty of low-water air or closed-loop cooling, Minnesota Power’s 700 MW wind/storage plan, and local watershed concerns. Cite the source and date of the claims you use. If you cite an estimator result, label it as an illustrative scenario and state its assumptions.
 3. **Is the Value worth the footprint?** Give your own conclusion about whether the computing **Value** justifies the local physical footprint in St. Louis County. Explain who gains, who bears costs or risks, and what conditions or new evidence could change your position.
 
