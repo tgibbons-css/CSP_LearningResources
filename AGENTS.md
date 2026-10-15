@@ -2,7 +2,7 @@
 
 ## Purpose and scope
 
-This is the CIS 1001: Computer Science Principles learning-resource framework. Keep course content short unless the user requests lesson development. Unit names are provisional. Do not invent due dates, grading policies, required readings, or institutional requirements.
+This is the CIS 1001: Computer Science Principles learning-resource framework. Keep course content short unless the user requests lesson development. Preserve the eight user-specified unit titles unless the user requests changes. Do not invent due dates, grading policies, required readings, or institutional requirements.
 
 ## Architecture
 

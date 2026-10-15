@@ -1,6 +1,6 @@
 # CIS 1001 · Computer Science Principles
 
-An extensible Docusaurus, React, TypeScript, and MDX framework for college-level introductory computing resources. Six provisional units provide space for objectives, readings, external resources, interactive activities, and assignments. Unit 1 includes a working binary explorer and multiple-choice self-check. Other content is intentionally minimal.
+An extensible Docusaurus, React, TypeScript, and MDX framework for college-level introductory computing resources. Eight course units provide space for objectives, readings, external resources, interactive activities, and assignments. Unit 1 includes a working binary explorer and multiple-choice self-check. Other content is intentionally minimal.
 
 Production URL: https://tgibbons-css.github.io/CSP_LearningResources/
 
@@ -41,7 +41,7 @@ npm run serve
 ```text
 docs/
   unit-1/                 # MDX overview and demonstration lesson
-  unit-2/ … unit-6/       # MDX overviews with five content sections
+  unit-2/ … unit-8/       # MDX overviews with five content sections
 src/
   components/             # ResourceCard, LearningObjectives,
                           # InstructionalCallout, SelfCheck, BinaryExplorer
@@ -61,7 +61,7 @@ Follow [AGENTS.md](AGENTS.md). Add MDX lessons to the appropriate unit folder wi
 
 Use [the demonstration lesson](docs/unit-1/binary-explorer.mdx) as a small authoring example. Keep TypeScript behavior in `src/components`; import it into MDX. Shared activities use native accessible controls and local React state. Responses are ungraded, not sent to a server, and reset when the component unmounts or the page reloads. This static site has no assignment submission system.
 
-When changing unit names, update `src/data/units.ts`, the unit `_category_.json`, and the overview front matter together. The current topic names are placeholders, not an adopted syllabus.
+When changing unit names, update `src/data/units.ts`, the unit `_category_.json`, and the overview front matter together. The eight unit titles follow the course outline; lesson content remains under development.
 
 ## Deployment after review
 

@@ -17,8 +17,8 @@ export default function Home() {
     <main className="container course-main">
       <section aria-labelledby="course-units">
         <div className="section-heading"><div><p className="eyebrow">Your learning path</p><h2 id="course-units">Explore the units</h2></div>
-          <p>Six spaces to read, experiment, and practice.</p></div>
-        <p className="framework-note">This resource collection is under development. Unit topics are provisional; Unit 1 includes a working demonstration.</p>
+          <p>Eight spaces to read, experiment, and practice.</p></div>
+        <p className="framework-note">This resource collection is under development. Lesson content is being developed; Unit 1 includes a working demonstration.</p>
         <div className="resource-grid">{units.map((unit) => <ResourceCard key={unit.number}
           title={unit.title} href={unit.href} label={`Unit ${String(unit.number).padStart(2, '0')}`}>
           <p>{unit.description}</p><span className="card-meta">{unit.number === 1 ? 'Demo activity available' : 'Content coming soon'}</span>

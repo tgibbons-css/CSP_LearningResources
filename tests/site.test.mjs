@@ -8,9 +8,9 @@ const base = '/CSP_LearningResources/';
 const root = resolve('build');
 function page(path) {return new JSDOM(readFileSync(join(root, path, 'index.html'), 'utf8')).window.document;}
 
-test('home links to all six built unit pages under the project base URL', () => {
+test('home links to all eight built unit pages under the project base URL', () => {
   const home = page('');
-  for (let unit = 1; unit <= 6; unit++) {
+  for (let unit = 1; unit <= 8; unit++) {
     const href = `${base}docs/unit-${unit}/`;
     assert.ok(home.querySelector(`main a[href="${href}"]`), `Home missing unit ${unit}`);
     const doc = page(`docs/unit-${unit}`);
@@ -31,7 +31,7 @@ test('lesson sequence, demonstration controls, and sidebar are present in produc
   assert.ok(lesson.querySelector(`a.pagination-nav__link--next[href="${base}docs/unit-2/"]`));
   assert.equal(lesson.querySelectorAll('button[aria-pressed]').length, 4);
   assert.equal(lesson.querySelectorAll('input[type="radio"]').length, 3);
-  for (let unit = 1; unit <= 6; unit++) {
+  for (let unit = 1; unit <= 8; unit++) {
     const link = lesson.querySelector(`aside a[href="${base}docs/unit-${unit}/"]`);
     assert.ok(link, `Sidebar missing unit ${unit}`);
     assert.match(link.textContent, new RegExp(`Unit ${unit}:`), `Sidebar needs a descriptive unit ${unit} label`);
