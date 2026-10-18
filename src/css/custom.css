@@ -97,6 +97,17 @@
 .binary-result {margin: 1.25rem 0; font-variant-numeric: tabular-nums;}
 .activity-note {font-size: .8rem; color: var(--muted); margin: 1rem 0 0;}
 .footer {background: #12333c;}
+.active-lesson-sections {margin: .25rem 0 .75rem .75rem; border-left: 1px solid var(--border);}
+.active-lesson-sections-toggle {display: flex; align-items: center; gap: .4rem; width: 100%; min-height: 44px; padding: .4rem .75rem; border: 0; background: transparent; color: var(--ifm-color-primary); font: inherit; font-size: .85rem; cursor: pointer; text-align: left;}
+.active-lesson-section-list {margin-left: 0 !important; padding-left: .35rem !important;}
+.active-lesson-section-list[hidden] {display: none;}
+.active-lesson-section-link {font-size: .82rem; line-height: 1.4; min-height: 44px; padding: .5rem .6rem;}
+.active-lesson-subsection {padding-left: .7rem;}
+@media (min-width: 997px) {
+  /* Reclaim the former desktop TOC column, including its empty wrapper. */
+  .lesson-layout > .row > .col:first-child {max-width: 100% !important;}
+  .lesson-layout > .row > .col.col--3:empty {display: none;}
+}
 @media (max-width: 996px) {.resource-grid {grid-template-columns: repeat(2, minmax(0, 1fr));}}
 @media (max-width: 600px) {
   .hero-content {padding-top: 2.75rem; padding-bottom: 2.75rem;}

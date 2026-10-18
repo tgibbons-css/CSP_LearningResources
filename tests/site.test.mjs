@@ -73,10 +73,9 @@ test('Unit 6 lessons separate activities and preserve the reading sequence', () 
   assert.equal(caseStudy.querySelector('h1').textContent, 'Hermantown Data Center Case Study');
   assert.equal(first.querySelectorAll('[role="tab"]').length, 5);
   assert.equal(first.querySelector('input[type="range"]'), null);
-  assert.equal(caseStudy.querySelectorAll('[role="tab"]').length, 4);
-  assert.ok(caseStudy.querySelector('input[type="range"][min="50"][max="700"]'));
-  assert.match(caseStudy.body.textContent, /not a forecast for Hermantown/);
-  assert.ok(caseStudy.getElementById('out-of-class-reflection-the-cloud-in-our-backyard'));
+  assert.equal(caseStudy.querySelectorAll('[role="tab"]').length, 0);
+  assert.equal(caseStudy.querySelector('input[type="range"]'), null);
+  assert.equal(caseStudy.getElementById('out-of-class-reflection-the-cloud-in-our-backyard'), null);
   assert.equal(first.getElementById('out-of-class-reflection-the-cloud-in-our-backyard'), null);
   for (const doc of [first, caseStudy]) {
     for (const href of [firstHref, caseHref]) assert.ok(doc.querySelector(`aside a[href="${href}"]`));
@@ -87,4 +86,37 @@ test('Unit 6 lessons separate activities and preserve the reading sequence', () 
   assert.ok(first.querySelector(`a.pagination-nav__link--next[href="${caseHref}"]`));
   assert.ok(caseStudy.querySelector(`a.pagination-nav__link--prev[href="${firstHref}"]`));
   assert.ok(caseStudy.querySelector(`a.pagination-nav__link--next[href="${base}docs/unit-7/"]`));
+});
+
+test('Hermantown routes students to all ten shared Docs instead of the legacy local workspace', () => {
+  const doc = page('docs/unit-6/hermantown-data-center-case-study');
+  const documentIds = [
+    '1lrviQHY4x-jLDPpGHWOIIkM-sxczA5Eo4qbywMj9f08',
+    '1t7GECDu-IZA7YLjylOOBB_XQejoRLonvdPgW3iyaelU',
+    '1Yazqd5jXh_C22tASbNvxJ5xRuSHqMda6Os6nhfLXG94',
+    '1vk1cxWy3PfFaa23Lk3dmC3y1wEoHE9RXJuhDu_uH-O8',
+    '1D6A_KCDOy6RJdVJroctwVb6HkQcgi6jyQbl8CILgbV0',
+    '1Ihz0zZh3xR5Z6uzSFiQNV_FTdeY535ocjpbjdoywKzA',
+    '1mN5FD6cXprx0YmD4tagVP08EH8yygRrxcUDdt1pfQXM',
+    '1Vs5aogmbzQIZHtH9EiaZNtNz2xi8VOCSXy8s-uCv-TM',
+    '1piXJCstzgO0k-6lchx9_PKoJiRx8vOIHadnUw6tmwUU',
+    '1jJoYD6ZhIN-82ijr7WsgHUQiVnub93_hiD5e5_0vZRI',
+  ];
+  for (const id of documentIds) {
+    const link = doc.querySelector(`article a[href^="https://docs.google.com/document/d/${id}/edit"]`);
+    assert.ok(link, `Missing shared document ${id}`);
+    assert.equal(link.target, '_blank');
+    assert.ok(link.textContent.trim().length > 10);
+  }
+  assert.equal(doc.querySelectorAll('article a[href^="https://docs.google.com/document/d/"]').length, 10);
+  assert.equal(doc.querySelectorAll('textarea, iframe').length, 0);
+  assert.doesNotMatch(doc.body.textContent, /Copy Group Reflection|Loading saved notes|POD_1_DOC_LINK|YOUR_FOLDER_URL/);
+  for (const id of ['phase-1-expert-pods', 'phase-2-home-teams', 'phase-3-final-class-decision']) {
+    assert.ok(doc.getElementById(id), `Missing student instructions for ${id}`);
+  }
+  assert.equal(doc.querySelector('a[href*="1gdclunNC525hWhev2urzdnCYQTotwaCOqqSjB1kAcwU"]'), null);
+  assert.deepEqual([...doc.querySelectorAll('article h2')].map((heading) => heading.textContent.replace(/\u200b/g, '').trim()),
+    ['How the jigsaw works', 'Resource Library']);
+  assert.equal(doc.getElementById('before-you-begin'), null);
+  assert.ok(doc.getElementById('resource-library'));
 });
