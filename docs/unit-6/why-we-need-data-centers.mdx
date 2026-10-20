@@ -1,82 +1,56 @@
 ---
 title: "Why We Need Data Centers"
-description: "Connect the five V's of Big Data, data formats, and distributed computing to physical infrastructure."
+description: "Explore how Big Data and distributed computing create demand for physical infrastructure."
 sidebar_label: "Why We Need Data Centers"
 sidebar_position: 2
 ---
 
-import LearningObjectives from '@site/src/components/LearningObjectives';
-import TechSynthesisBuilder from '@site/src/components/Unit6/TechSynthesisBuilder';
 
-<div className="unit-intro">
-<p className="eyebrow">Technical concepts → physical systems → community decisions</p>
-<p className="unit-intro-lead">Where does “the cloud” actually live?</p>
-<p>Follow the data behind everyday services into server clusters, power systems, and cooling equipment.</p>
-</div>
+## Why do we need data centers?
 
-## Learning objectives
+A spreadsheet might fit on one laptop. Streaming video, serving millions of users, or training AI models can require many computers working together. Those computers need buildings, power, networks, and cooling.
 
-<LearningObjectives items={[
-  'Explain the five V concepts using examples and source evidence.',
-  'Connect Big Data, data formats, and distributed computing to physical infrastructure needs.',
-]} />
+Using more machines is not the only solution: efficient software, reduced workloads, and shared resources can also lower infrastructure needs. [What is the cloud? (Cloudflare)](https://www.cloudflare.com/learning/cloud/what-is-the-cloud/)
 
-:::info Your work stays on this device
-This workspace saves notes automatically in this browser's local storage. It does not sync between computers or submit work to the class. Copy your summary and paste it into the class document or Brightspace destination. On a shared computer, avoid personal information and remove your drafts through the browser's site-data controls when finished.
-:::
+## The five V’s of Big Data
 
-## From a spreadsheet to a server cluster
+- **Volume:** How much data is there?
+- **Velocity:** How fast does data arrive or need to be processed?
+- **Variety:** What kinds of data are involved?
+- **Veracity:** How accurate and trustworthy is the data?
+- **Value:** What useful result does the data provide?
 
-A small table can fit on a laptop. A service receiving many simultaneous requests, storing many copies of media, or training a large model may need much more compute, storage, and network capacity. Distributed systems spread work across machines, but those machines still need racks, cables, electricity, maintenance, and cooling. [Cloudflare’s cloud overview](https://www.cloudflare.com/learning/cloud/what-is-the-cloud/) connects remote services to the physical servers that deliver them.
+**Resources:** [IBM: Big Data](https://www.ibm.com/topics/big-data) · [Oracle: Big Data](https://www.oracle.com/big-data/what-is-big-data/) · [Mobile CSP: Big Data](https://runestone.academy/ns/books/published/mobilecsp/Unit7-Using-Analyzing-Data/Big-Data.html) · [Video: The Five V’s](https://www.youtube.com/watch?v=bAyrObl7TYE)
 
-Scale creates pressure; it does not make one enormous building the only possible design. Workload reduction, efficient software, location choices, and sharing or distributing resources also matter.
+## Two related concepts
 
-## The 5 V’s of Big Data
+**Data formats:** Spreadsheets contain structured tables; JSON represents information using keys and values; text, images, and audio often need different methods of processing. The format alone does not determine how much storage is needed.
 
-Use **Volume** (amount), **Velocity** (arrival and processing rate), **Variety** (formats), **Veracity** (trustworthiness), and **Value** (useful outcomes) to describe a workload. Which V increases resource needs? Which might help us decide whether the work is worth doing?
+**Resources:** [AWS: Structured vs. Unstructured Data](https://aws.amazon.com/compare/the-difference-between-structured-data-and-unstructured-data/) · [MDN: JSON](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON) · [Video: Data Types](https://www.youtube.com/watch?v=eK3I6oI_4Is)
 
-- [IBM: What is Big Data?](https://www.ibm.com/topics/big-data)
-- [Oracle: What Is Big Data?](https://www.oracle.com/big-data/what-is-big-data/)
-- [Mobile CSP: 7.2 Big Data](https://runestone.academy/ns/books/published/mobilecsp/Unit7-Using-Analyzing-Data/Big-Data.html)
-- [YouTube: Simplilearn - What is Big Data? 5 V's Explained](https://www.youtube.com/watch?v=bAyrObl7TYE)
+**Distributed computing:** Multiple networked computers share processing and storage. This increases capacity but also introduces networking, communication, and coordination challenges.
 
-## Supporting context: Data formats
+**Resources:** [AWS: Cloud Computing](https://aws.amazon.com/what-is-cloud-computing/) · [AWS: Distributed Computing](https://aws.amazon.com/what-is/distributed-computing/) · [IBM: Distributed Systems](https://www.ibm.com/think/topics/distributed-systems)
 
-Compare a table with consistent columns, a JSON record with keys and nested values, and an image or audio file without that tabular schema. “Unstructured” does not mean meaningless. JSON has structure even when records vary. AI workloads can combine structured records, JSON, text, and media; **format alone does not determine size**.
+## Team activity: Explain one of the five V’s
 
-- [AWS: Structured Data vs. Unstructured Data](https://aws.amazon.com/compare/the-difference-between-structured-data-and-unstructured-data/)
-- [MDN: Working with JSON](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON)
-- [YouTube: IBM Technology - Structured vs Unstructured Data Explained](https://www.youtube.com/watch?v=eK3I6oI_4Is)
+Work in **five teams** (Volume, Velocity, Variety, Veracity, or Value). You have **15 minutes** to prepare your section of the shared document.
 
-## Supporting context: Distributed computing and cloud infrastructure
-
-Parallel computing performs work concurrently. Distributed computing coordinates machines connected by a network. Cluster storage spreads data across machines and may replicate it for resilience. Adding machines can increase capacity, but communication, coordination, and network bottlenecks can limit the benefit. Use the sources below to connect these ideas to physical infrastructure.
-
-- [AWS: What Is Cloud Computing?](https://aws.amazon.com/what-is-cloud-computing/)
-- [AWS: What Is Distributed Computing?](https://aws.amazon.com/what-is/distributed-computing/)
-- [IBM Technology - What are distributed systems?](https://www.ibm.com/think/topics/distributed-systems)
-- [Cloudflare: What Is the Cloud?](https://www.cloudflare.com/learning/cloud/what-is-the-cloud/)
-
-## In-class collaborative synthesis
-
-1. Form **five teams**, each assigned one V: **Volume, Velocity, Variety, Veracity, or Value**.
-2. Spend **15 minutes** exploring the Big Data resources above. Use your team's tab below to prepare your assigned section of the [Shared 5 V's Synthesis Document](https://docs.google.com/document/d/1sxQy6eFQVi9U4ShmW25m76Uzs_shPyw7uTz9tJeR0Qo/edit?usp=sharing). Include all four responses:
-   - A definition of your V in your own words.
-   - A specific real-world example, with a source link.
-   - A short quote from one of the sources, with a source link. Use quotation marks and reproduce the wording accurately.
-   - One question or trade-off for the class to consider.
-3. Use **Copy This Team's Summary**, then paste into your assigned V section of the shared Google Doc. The website saves your draft locally; it does not update the Google Doc automatically.
-4. Give a **2-minute explanation** of your V, example, and source quote. Use your team's focus question below to guide discussion.
-5. Read another team's section. Add one question or connection between its V and your own.
+1. Use the resources above to prepare **four items**: a definition in your own words, a real-world example with a source link, a brief exact quotation with its source link, and one question or trade-off for discussion.
+2. Write your team's work in your team's section of the [shared Google Doc](https://docs.google.com/document/d/1sxQy6eFQVi9U4ShmW25m76Uzs_shPyw7uTz9tJeR0Qo/edit?usp=sharing).
+3. Give a **2-minute explanation** to the class. Then read another team's section and contribute a question or connection.
 
 | Team | Focus question |
 | --- | --- |
-| **Volume** | How does the amount of data affect storage, replication, and processing needs? |
-| **Velocity** | How do arrival rates and response-time expectations affect processing and networking? |
-| **Variety** | How do different formats affect storage, integration, and analysis? |
-| **Veracity** | How do errors, missing information, and bias affect cleaning, validation, and trust? |
-| **Value** | What useful outcome does the computing provide, and does it justify its resource costs? |
+| **Volume** | How does data quantity affect storage and processing? |
+| **Velocity** | How do incoming data rates affect computing and networks? |
+| **Variety** | How do different formats affect storage and analysis? |
+| **Veracity** | How do errors and bias affect our trust in the results? |
+| **Value** | Do the benefits justify the computing resources required? |
 
-<TechSynthesisBuilder />
+:::important Submit your team's work
+**[OPEN THE SHARED GOOGLE DOC →](https://docs.google.com/document/d/1sxQy6eFQVi9U4ShmW25m76Uzs_shPyw7uTz9tJeR0Qo/edit?usp=sharing)**
 
-Continue to the [Hermantown Data Center Case Study](./hermantown-data-center-case-study.mdx) to investigate a local proposal and its resource trade-offs.
+:::
+
+**Next:** [Hermantown Data Center Case Study](./hermantown-data-center-case-study.mdx)

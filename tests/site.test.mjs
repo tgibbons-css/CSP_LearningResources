@@ -71,7 +71,10 @@ test('Unit 6 lessons separate activities and preserve the reading sequence', () 
   const caseStudy = page('docs/unit-6/hermantown-data-center-case-study');
   assert.equal(first.querySelector('h1').textContent, 'Why We Need Data Centers');
   assert.equal(caseStudy.querySelector('h1').textContent, 'Hermantown Data Center Case Study');
-  assert.equal(first.querySelectorAll('[role="tab"]').length, 5);
+  assert.equal(first.querySelectorAll('[role="tab"]').length, 0);
+  assert.ok(first.getElementById('team-activity-explain-one-of-the-five-vs'));
+  assert.ok(first.querySelector('article a[href^="https://docs.google.com/document/d/1sxQy6eFQVi9U4ShmW25m76Uzs_shPyw7uTz9tJeR0Qo/edit"]'));
+  assert.doesNotMatch(first.body.textContent, /Copy This Team's Summary|interactive workspace below/);
   assert.equal(first.querySelector('input[type="range"]'), null);
   assert.equal(caseStudy.querySelectorAll('[role="tab"]').length, 0);
   assert.equal(caseStudy.querySelector('input[type="range"]'), null);
